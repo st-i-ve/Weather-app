@@ -1,25 +1,25 @@
+/*mainpage*/
 * {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
-
-.container {
+.wholepage {
   background: linear-gradient(135deg, #00feba, #5b548a);
   border-radius: 20px;
-  margin: 2%;
-  height: 90vh;
-}
-
-.container-inner {
+  margin: 1%;
+  height: auto;
   display: flex;
+  flex-direction: column;
 }
-
-.current-weather {
-  width: 60%;
-  justify-content: center;
-  align-items: center;
+.dynamics {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: space-evenly;
+  align-content: center;
+  margin: 20;
 }
-
+/*topbar*/
 .utilitybar {
   display: flex;
   flex-direction: row;
@@ -130,6 +130,19 @@
 .units button:hover {
   transform: scale(1.15);
 }
+/*currentweather*/
+.current-weather-box {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1%;
+}
+.current-weather {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
 .weather-image {
   margin-top: 29px;
@@ -155,11 +168,13 @@
 }
 
 .data-container {
-  margin-top: 20px;
+  margin: 1%;
   color: white;
   display: flex;
   justify-content: center;
   flex-direction: row;
+  width: 100%;
+  gap: 1%;
 }
 
 .element {
@@ -171,15 +186,15 @@
 }
 
 .divider {
-  font-size: 20px;
+  font-size: 150%;
 }
 
 .element img {
-  width: 25px;
+  width: 25%;
 }
 
 .data {
-  font-size: 20px;
+  font-size: 100%;
   font-weight: 400;
   display: flex;
   flex-direction: row;
@@ -188,44 +203,164 @@
 }
 
 .text {
-  font-size: 20px;
+  font-size: 40x;
 }
 
+/*forecast*/
+.forecastcontainer {
+  margin: 32px;
+}
+.hourlyelements {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.f_element {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #e6f8f328, rgba(255, 255, 255, 0.2));
+  padding: 10px;
+  border-radius: 15px;
+  align-items: center;
+  height: 30vh;
+  width: 25%;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 400;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.09);
+}
 
-
-/* Media Queries for Phones and Tablets */
-@media only screen and (max-width: 850px) {
-  .container {
-    margin: 5%;
-    height: 90vh;
-  }
-
-  .utilitybar {
-    display: flex;
-    padding-right:20px;
-    
-  }
-  
-  .top-bar {
-    width: 60%;
-  }
+.f_element img {
+  width: 100%;
+}
+.forecasthead {
+  color: rgb(255, 255, 255);
+  font-size: 22px;
+}
+.dailyforecast {
+  margin-top: 55px;
+}
+.dailyelements {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
 }
 
 @media only screen and (max-width: 850px) {
-  .container {
-    margin: 10px;
+  .wholepage {
+    border-radius: 0px;
+    margin: 0%;
     height: auto;
-  }
-  
-  .container-inner {
+    display: flex;
     flex-direction: column;
+    width: 100%;
   }
-  
+  .dynamics {
+    flex-direction: column;
+
+    width: 100%;
+  }
+  .current-weather-box {
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
   .current-weather {
     width: 100%;
   }
-  
+
+  .weather-image {
+    margin-top: 35px;
+  }
+
+  .weather-temp {
+    font-size: 550%;
+  }
+
+  .city-name {
+    margin: -5%;
+    font-size: 40px;
+  }
+
+  .data-container {
+    width: auto;
+    margin: 2%;
+    width: 100%;
+    gap: 1%;
+    margin-bottom: -40%;
+  }
+
+  .divider {
+    font-size: 150%;
+  }
+
+  .element img {
+    width: 15%;
+  }
+
+  .data {
+    font-size: 80%;
+    font-weight: 400;
+    gap: 5px;
+  }
+
+  .text {
+    font-size: 40x;
+  }
   .top-bar {
     width: 100%;
+  }
+  /*bar config*/
+  .utilitybar {
+    gap: 3px;
+  }
+
+  .top-bar {
+    width: 410px;
+    padding-left: 30px;
+  }
+
+  .top-bar input {
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .searchIcon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .locationpin {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }
+
+  .units {
+    font-size: 20px;
+    height: 40px;
+    margin-right: 15px;
+    width: 110px;
+  }
+
+  .units button {
+    font-size: 18px;
+  }
+  /*forecast*/
+  .f_element {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #e6f8f328, rgba(255, 255, 255, 0.2));
+    padding: 5px;
+    border-radius: 11px;
+    align-items: center;
+    height: 22vh;
+    width: 25%;
   }
 }
