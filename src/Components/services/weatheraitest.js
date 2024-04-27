@@ -1,7 +1,7 @@
 const weatherAPI = "sk-proj-n7YUTjOJcuSxJavCud1oT3BlbkFJbYLhELMsS3Rq4I7j7U5T";
 const weatherAPI2 = "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";
 const weatherAPI3 = "sk-vSqbvKGyt5C397Kx5rqlT3B1bkFJtUQPqeBJ4xzMAnzvSIAM";
-const weatherAPI4 = "sk-proj-7kbDmgAMDX5LqHMWNWC3T3BlbkFJTJhAMBbk1ASL9dxukqr2";
+const weatherAPI4 = "sk-proj-7kbDmgAMDX5LqHMWNWC3T3BlbkFJTJhAMBbk1ASL9dxukqr";
 
 const getdataThroughai = async (chatMessages, deriveddata, units) => {
   try {
