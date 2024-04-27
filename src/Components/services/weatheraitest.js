@@ -1,5 +1,7 @@
-const weatherAPI = "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";
+const weatherAPI = "sk-proj-n7YUTjOJcuSxJavCud1oT3BlbkFJbYLhELMsS3Rq4I7j7U5T";
 const weatherAPI2 = "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";
+const weatherAPI3 = "sk-vSqbvKGyt5C397Kx5rqlT3B1bkFJtUQPqeBJ4xzMAnzvSIAM";
+const weatherAPI4 = "sk-proj-7kbDmgAMDX5LqHMWNWC3T3BlbkFJTJhAMBbk1ASL9dxukqr2";
 
 const getdataThroughai = async (chatMessages, deriveddata, units) => {
   try {
@@ -28,7 +30,7 @@ const getdataThroughai = async (chatMessages, deriveddata, units) => {
       day4: clouds ${deriveddata.unformattedForecastWeather.daily[3].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[3].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[3].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[3].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[3].rain}
       day5: clouds ${deriveddata.unformattedForecastWeather.daily[4].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[4].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[4].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[4].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[4].rain}
       day6: clouds ${deriveddata.unformattedForecastWeather.daily[5].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[5].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[5].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[5].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[5].rain}
-      day7: clouds ${deriveddata.unformattedForecastWeather.daily[6].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[6].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[6].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[6].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[6].rain}.After comprehending all of the above data i want you to sound like an agricultural officer explaining the details and advising the farmers according to the data provided.Make description consise where necessary.
+      day7: clouds ${deriveddata.unformattedForecastWeather.daily[6].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[6].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[6].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[6].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[6].rain}.After comprehending all of the above data i want you to sound like an agricultural officer explaining the details and advising the farmers according to the data provided.Make description consise where necessary. 
 
       `,
     };
@@ -41,7 +43,7 @@ const getdataThroughai = async (chatMessages, deriveddata, units) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${weatherAPI2}`,
+        Authorization: `Bearer ${weatherAPI4}`,
       },
       body: JSON.stringify(apiRequestBody),
     });

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./ChatWidget.css";
 import getdataThroughai from "../services/weatheraitest";
 
-const ChatWidget = ({weather,units}) => {
+const ChatWidget = ({ weather, units }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([
     { text: "hello i am your assistant", sender: "responder" },
@@ -18,21 +18,20 @@ const ChatWidget = ({weather,units}) => {
     setUserMessage(event.target.value);
   };
 
-  const handleUserMessageSubmit = async(event) => {
+  const handleUserMessageSubmit = async (event) => {
     event.preventDefault();
     if (userMessage.trim() !== "") {
       const newUserMessage = { text: userMessage, sender: "user" };
 
-      const newMessages=[...messages, newUserMessage];
+      const newMessages = [...messages, newUserMessage];
       setMessages(newMessages);
-      
-   
+
       setUserMessage("");
-      
+
       scrollToBottom();
 
-      const newaidata=await getdataThroughai(newMessages,weather,units);
-  
+      const newaidata = await getdataThroughai(newMessages, weather, units);
+
       // Simulate response from responder after 1 second
       setTimeout(() => {
         setMessages((prevMessages) => [
@@ -40,10 +39,8 @@ const ChatWidget = ({weather,units}) => {
           { text: newaidata, sender: "responder" },
         ]);
         scrollToBottom();
-        
       }, 1000);
     }
-
   };
 
   const scrollToBottom = () => {
@@ -56,9 +53,6 @@ const ChatWidget = ({weather,units}) => {
     scrollToBottom();
   }, [messages]);
 
-
-  
-
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
       <div className="toggle-area" onClick={toggleChat}></div>{" "}
@@ -68,8 +62,7 @@ const ChatWidget = ({weather,units}) => {
       </div>
       {isChatOpen && (
         <div>
-          <div className="chat-box" ref={chatBoxRef}
-           >
+          <div className="chat-box" ref={chatBoxRef}>
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.sender}`}>
                 <div className="message-bubble">{message.text}</div>
