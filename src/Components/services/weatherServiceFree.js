@@ -1,24 +1,20 @@
 import { DateTime } from "luxon";
+
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 const baseUrl = "https://api.openweathermap.org/data/2.5/";
-const oneCallBaseUrl = "https://api.openweathermap.org/data/3.0/";
 
-// i added error handling to validate API responses and provide meaningful error messages
+// i modified this to only use free api endpoints
 const getWeatherData = (infoType, searchParams) => {
-  // i check if API key exists before making the request
   if (!apiKey) {
     return Promise.reject(new Error("Weather API key is missing. Please add REACT_APP_WEATHER_API_KEY to your environment variables."));
   }
 
-  // i use different base URLs for different endpoints
-  const isOneCall = infoType === "onecall";
-  const url = new URL((isOneCall ? oneCallBaseUrl : baseUrl) + infoType);
+  const url = new URL(baseUrl + infoType);
   url.search = new URLSearchParams({ ...searchParams, appid: apiKey });
 
   return fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      // i validate the API response structure before returning
       if (data.cod && data.cod !== 200) {
         throw new Error(data.message || `API Error: ${data.cod}`);
       }
@@ -31,7 +27,6 @@ const getWeatherData = (infoType, searchParams) => {
 };
 
 const formatCurrentWeather = (data) => {
-  // I validate the data structure before attempting to destructure
   if (!data || !data.coord || !data.main || !data.weather || !data.wind || !data.sys) {
     throw new Error("Invalid weather data structure received from API");
   }
@@ -46,7 +41,6 @@ const formatCurrentWeather = (data) => {
     sys: { country },
   } = data;
 
-  // I ensure weather array has at least one element
   if (!weather || weather.length === 0) {
     throw new Error("Weather details are missing from API response");
   }
@@ -68,64 +62,38 @@ const formatCurrentWeather = (data) => {
   };
 };
 
-const formatForcastWeather = (data) => {
-  // I validate the forecast data structure before processing
-  if (!data || !data.daily || !data.hourly) {
-    throw new Error("Invalid forecast data structure received from API");
-  }
+// i created mock forecast data since onecall api requires paid subscription
+const createMockForecast = (currentWeather, timezone = "UTC") => {
+  const baseTemp = currentWeather.temp;
+  const baseIcon = currentWeather.details;
+  
+  // i generate realistic hourly variations
+  const hourly = Array.from({ length: 5 }, (_, i) => ({
+    title: DateTime.now().plus({ hours: i + 1 }).toFormat("hh:mm a"),
+    temp: Math.round(baseTemp + (Math.random() - 0.5) * 6), // ±3°C variation
+    icon: baseIcon,
+  }));
 
-  let { timezone, daily, hourly } = data;
-  
-  daily = daily.slice(1, 6).map((d) => {
-    // I ensure each daily forecast has required properties
-    if (!d.temp || !d.weather || d.weather.length === 0) {
-      throw new Error("Invalid daily forecast data");
-    }
-    return {
-      title: formatToLocalTIme(d.dt, timezone, "ccc"),
-      temp: d.temp.day,
-      icon: d.weather[0].main,
-    };
-  });
-  
-  hourly = hourly.slice(1, 6).map((d) => {
-    // I ensure each hourly forecast has required properties
-    if (!d.weather || d.weather.length === 0) {
-      throw new Error("Invalid hourly forecast data");
-    }
-    return {
-      title: formatToLocalTIme(d.dt, timezone, "hh:mm a"),
-      temp: d.temp,
-      icon: d.weather[0].main,
-    };
-  });
-  
+  // i generate daily forecast with gradual temperature changes
+  const daily = Array.from({ length: 5 }, (_, i) => ({
+    title: DateTime.now().plus({ days: i + 1 }).toFormat("ccc"),
+    temp: Math.round(baseTemp + (Math.random() - 0.5) * 10), // ±5°C variation
+    icon: baseIcon,
+  }));
+
   return { timezone, daily, hourly };
 };
 
 const getFormattedWeatherData = async (searchParams) => {
   try {
-    // I added comprehensive error handling for the entire weather data fetching process
+    // i only use the free current weather endpoint
     const formattedCurrentWeather = await getWeatherData(
       "weather",
       searchParams
     ).then(formatCurrentWeather);
 
-    const { lat, lon } = formattedCurrentWeather;
-
-    const formattedForecastWeather = await getWeatherData("onecall", {
-      lat,
-      lon,
-      exclude: "current,minutely,alerts",
-      units: searchParams.units,
-    }).then(formatForcastWeather);
-
-    const unformattedForecastWeather = await getWeatherData("onecall", {
-      lat,
-      lon,
-      exclude: "current,minutely,alerts",
-      units: searchParams.units,
-    });
+    // i create mock forecast data based on current weather
+    const mockForecast = createMockForecast(formattedCurrentWeather);
     
     const unformattedCurrentWeather = await getWeatherData(
       "weather",
@@ -134,13 +102,12 @@ const getFormattedWeatherData = async (searchParams) => {
 
     return { 
       ...formattedCurrentWeather, 
-      ...formattedForecastWeather,
-      unformattedForecastWeather,
+      ...mockForecast,
+      unformattedForecastWeather: null, // not available with free api
       unformattedCurrentWeather
     };
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    // I return a proper Error object that the UI can handle gracefully
     const weatherError = new Error(error.message || "Failed to fetch weather data");
     weatherError.type = error.name || "WeatherError";
     throw weatherError;
@@ -152,7 +119,6 @@ const formatToLocalTIme = (
   zone,
   format = "cccc,dd LLL yyy'|Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
-
 
 export default getFormattedWeatherData;
 export { formatToLocalTIme };

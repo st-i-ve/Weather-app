@@ -53,7 +53,7 @@ export default function TopBar({ setQuery, units, setUnits }) {
           </div>
         </div>
         <div className="locationpin" onClick={location}>
-          <img src={pin} />
+          <img src={pin} alt="Location pin" />
         </div>
         <div className="units">
           <button name="metric" onClick={unitChange}>

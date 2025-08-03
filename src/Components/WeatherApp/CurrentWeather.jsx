@@ -33,26 +33,11 @@ export default function CurrentWeather({
     }
   }, [details]);
 
-  /*const [tempUnits, setTempUnits] = useState("c");
-  const [windSpeedUnits, setWindSpeedUnits] = useState("m/s");
-
-  useEffect(() => {
-    if (units === "imperial") {
-      setTempUnits("c");
-      setWindSpeedUnits("m/s");
-    } else if (units === "metric") {
-      setTempUnits("f");
-      setWindSpeedUnits("m/h");
-    } else {
-      setTempUnits("null");
-      setWindSpeedUnits("null");
-    }
-  }, [units]);*/
 
   return (
     <div className="cuurent-weather">
       <div className="weather-image">
-        <img src={wicon} />
+        <img src={wicon} alt={details} />
       </div>
       <div className="weather-temp">
         {Math.round(`${temp}`)}°{`${unitSign}`}

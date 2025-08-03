@@ -4,8 +4,6 @@ import TopBar from "./Components/WeatherApp/TopBar";
 import CurrentWeather from "./Components/WeatherApp/CurrentWeather";
 import Forecast from "./Components/WeatherApp/Forecast";
 import "./Components/WeatherApp/currentweather.css";
-import getdataThroughai from "./Components/services/weatheraitest";
-import weatherAI from "./Components/WeatherApp/WeatherAI";
 import ChatWidget from "./Components/WeatherApp/ChatWidget";
 
 const App = () => {
@@ -14,14 +12,23 @@ const App = () => {
   const [weather, setWeather] = useState(null);
   const [unitSign, setUnitSign] = useState("C");
   const [wind_speed_sign, setWindSpeedSign] = useState("km/hr");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
-      const data = await getFormattedWeatherData({ ...query, units }).then(
-        (data) => {
-          setWeather(data);
-        }
-      );
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getFormattedWeatherData({ ...query, units });
+        setWeather(data);
+      } catch (err) {
+        console.error("Failed to fetch weather:", err);
+        setError(err.message || "Failed to load weather data. Please try again.");
+        setWeather(null);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchWeather();
@@ -49,7 +56,42 @@ const App = () => {
   return (
     <div className="wholepage">
       <TopBar setQuery={setQuery} setUnits={setUnits} units={units} />
-      {weather && (
+      
+      {loading && (
+        <div className="loading-container" style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '200px',
+          color: 'white',
+          fontSize: '18px'
+        }}>
+          Loading weather data...
+        </div>
+      )}
+      
+      {error && (
+        <div className="error-container" style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '200px',
+          color: '#ff6b6b',
+          fontSize: '16px',
+          textAlign: 'center',
+          padding: '20px'
+        }}>
+          <div>
+            <h3>Weather data unavailable</h3>
+            <p>{error}</p>
+            <p style={{ fontSize: '14px', marginTop: '10px' }}>
+              Please check your internet connection and API key configuration.
+            </p>
+          </div>
+        </div>
+      )}
+      
+      {weather && !loading && !error && (
         <div className="dynamics">
           <div className="current-weather-box">
             <CurrentWeather
