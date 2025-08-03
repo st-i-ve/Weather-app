@@ -1,10 +1,10 @@
 
-const weatherAPI = process.env.REACT_APP_GEMINI_API_KEY;
+const geminiAPI = process.env.REACT_APP_GEMINI_API_KEY;
 
 const getdataThroughai = async (chatMessages, deriveddata, units) => {
   try {
     // i check if gemini api key is available
-    if (!weatherAPI) {
+    if (!geminiAPI) {
       throw new Error("Gemini API key not found. Please set REACT_APP_GEMINI_API_KEY in your environment variables.");
     }
 
@@ -57,7 +57,7 @@ the conversations should be short messages`;
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-goog-api-key": weatherAPI,
+        "X-goog-api-key": geminiAPI,
       },
       body: JSON.stringify(apiRequestBody),
     });
