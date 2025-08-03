@@ -36,7 +36,9 @@ Please analyze the weather data and respond as an agricultural officer providing
 - Specific recommendations for planting, harvesting, irrigation, or other farm activities
 - Any weather-related risks or opportunities for crops
 
-Keep your response concise but informative.`;
+Keep your response concise but informative.
+be more human dont give information unless asked to 
+the conversations should be short messages`;
 
     // i use gemini's api structure
     const apiRequestBody = {
