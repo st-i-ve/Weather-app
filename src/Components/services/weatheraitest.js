@@ -20,23 +20,23 @@ const getdataThroughai = async (chatMessages, deriveddata, units) => {
       }
     });
 
-    // i create the system context and combine it with conversation history
-    const systemContext = `i live in ${deriveddata.name} and tomorrow is ${deriveddata.daily[0].title} .The units used are ${units}.The weather today is : temoerature ${deriveddata.temp} ,humidity ${deriveddata.humidity},wind speed ${deriveddata.speed} overall detail ${deriveddata.details} cloudcover ${deriveddata.unformattedCurrentWeather.clouds.all} description ${deriveddata.unformattedCurrentWeather.weather[0].description}.The weather forecast today of the following hours are hour1:${deriveddata.hourly[0].title},temp${deriveddata.hourly[0].temp},humidty ${deriveddata.unformattedForecastWeather.hourly[0].humidity}
-      hour2: ${deriveddata.hourly[1].title}, temp${deriveddata.hourly[1].temp}, humidity ${deriveddata.unformattedForecastWeather.hourly[1].humidity},
-      hour3: ${deriveddata.hourly[2].title}, temp${deriveddata.hourly[2].temp}, humidity ${deriveddata.unformattedForecastWeather.hourly[2].humidity},
-      hour4: ${deriveddata.hourly[3].title}, temp${deriveddata.hourly[3].temp}, humidity ${deriveddata.unformattedForecastWeather.hourly[3].humidity},
-      hour5: ${deriveddata.hourly[4].title}, temp${deriveddata.hourly[4].temp}, humidity ${deriveddata.unformattedForecastWeather.hourly[4].humidity}
-      .The forecast from tommorow is as follows day1: clouds ${deriveddata.unformattedForecastWeather.daily[0].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[0].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[0].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[0].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[0].rain}
-      day2: clouds ${deriveddata.unformattedForecastWeather.daily[1].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[1].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[1].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[1].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[1].rain}
-      day3: clouds ${deriveddata.unformattedForecastWeather.daily[2].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[2].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[2].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[2].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[2].rain}
-      day4: clouds ${deriveddata.unformattedForecastWeather.daily[3].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[3].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[3].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[3].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[3].rain}
-      day5: clouds ${deriveddata.unformattedForecastWeather.daily[4].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[4].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[4].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[4].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[4].rain}
-      day6: clouds ${deriveddata.unformattedForecastWeather.daily[5].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[5].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[5].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[5].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[5].rain}
-      day7: clouds ${deriveddata.unformattedForecastWeather.daily[6].clouds}, humidity ${deriveddata.unformattedForecastWeather.daily[6].humidity}, temp ${deriveddata.unformattedForecastWeather.daily[6].temp.day}, description ${deriveddata.unformattedForecastWeather.daily[6].weather[0].description}, rain ${deriveddata.unformattedForecastWeather.daily[6].rain}.After comprehending all of the above data i want you to sound like an agricultural officer explaining the details and advising the farmers according to the data provided.Make description consise where necessary.
+    // i create the system context with raw json data instead of manually formatting everything
+    const systemContext = `You are an agricultural officer providing weather-based farming advice. The user lives in ${deriveddata.name} and the units used are ${units}.
+
+Below is the complete weather data in JSON format. Please analyze this data and provide agricultural advice based on current conditions, hourly forecasts, and daily forecasts:
+
+WEATHER DATA:
+${JSON.stringify(deriveddata, null, 2)}
 
 ${conversationHistory ? `Previous conversation:\n${conversationHistory}` : ''}
 
-Please respond as an agricultural officer providing weather-based farming advice.`;
+Please analyze the weather data and respond as an agricultural officer providing practical farming advice. Focus on:
+- Current weather conditions and their impact on farming activities
+- Upcoming weather patterns and how farmers should prepare
+- Specific recommendations for planting, harvesting, irrigation, or other farm activities
+- Any weather-related risks or opportunities for crops
+
+Keep your response concise but informative.`;
 
     // i use gemini's api structure
     const apiRequestBody = {
