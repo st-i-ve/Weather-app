@@ -1,5 +1,5 @@
 
-const weatherAPI = process.env.REACT_APP_OPENAI_API_KEY;
+const weatherAPI = process.env.REACT_APP_GEMINI_API_KEY;
 
 const getdataThroughai = async (chatMessages, deriveddata, units) => {
   try {
