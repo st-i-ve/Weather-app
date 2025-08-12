@@ -10,7 +10,50 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  /* i added a gentle transition for theme changes */
+  transition: background 300ms ease;
 }
+
+/* theme backgrounds */
+.wholepage.theme--warm {
+  /* orangeish warm */
+  background: linear-gradient(135deg, #ff8a00, #ff512f);
+}
+.wholepage.theme--cold {
+  /* whitish/icy */
+  background: linear-gradient(135deg, #eef5ff, #b3d4ff);
+}
+.wholepage.theme--mild {
+  /* green-bluish average */
+  background: linear-gradient(135deg, #00feba, #5b548a);
+}
+.wholepage.theme--rainy {
+  /* bluish rainy */
+  background: linear-gradient(135deg, #7fc7ff, #2b6cb0);
+}
+.wholepage.theme--cloudy {
+  /* grey-blue cloudy */
+  background: linear-gradient(135deg, #cfd9df, #a6c0fe);
+}
+.wholepage.theme--snowy {
+  /* white to light-blue snowy */
+  background: linear-gradient(135deg, #ffffff, #dfefff);
+}
+.wholepage.theme--foggy {
+  /* low contrast fog */
+  background: linear-gradient(135deg, #eceff1, #cfd8dc);
+}
+.wholepage.theme--stormy {
+  /* darker blue/purple storm */
+  background: linear-gradient(135deg, #373b44, #4286f4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wholepage {
+    transition: none;
+  }
+}
+
 .dynamics {
   display: flex;
   flex-direction: row;

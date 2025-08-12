@@ -6,6 +6,46 @@ import Forecast from "./Components/WeatherApp/Forecast";
 import "./Components/WeatherApp/currentweather.css";
 import ChatWidget from "./Components/WeatherApp/ChatWidget";
 
+// i added this helper to compute weather themes based on conditions and temperature
+const getWeatherTheme = (weather, units) => {
+  if (!weather || !weather.details || weather.temp === undefined) {
+    return 'mild'; // fallback theme
+  }
+
+  const { details, temp } = weather;
+  const condition = details.toLowerCase();
+
+  // i prioritize precipitation and severe conditions over temperature
+  if (condition.includes('rain') || condition.includes('drizzle')) {
+    return 'rainy';
+  }
+  if (condition.includes('thunderstorm') || condition.includes('storm')) {
+    return 'stormy';
+  }
+  if (condition.includes('snow')) {
+    return 'snowy';
+  }
+  if (condition.includes('mist') || condition.includes('fog') || condition.includes('haze') || condition.includes('smoke')) {
+    return 'foggy';
+  }
+  if (condition.includes('cloud')) {
+    return 'cloudy';
+  }
+
+  // i use temperature thresholds for clear conditions
+  const warmThreshold = units === 'metric' ? 28 : 82;
+  const coldThreshold = units === 'metric' ? 10 : 50;
+
+  if (temp >= warmThreshold) {
+    return 'warm';
+  }
+  if (temp <= coldThreshold) {
+    return 'cold';
+  }
+
+  return 'mild'; // default green-bluish theme
+};
+
 const App = () => {
   const [query, setQuery] = useState({ q: "Bungoma" });
   const [units, setUnits] = useState("metric");
@@ -53,8 +93,11 @@ const App = () => {
     }
   }, [units]);
 
+  // i compute the theme based on current weather conditions
+  const currentTheme = weather ? getWeatherTheme(weather, units) : 'mild';
+
   return (
-    <div className="wholepage">
+    <div className={`wholepage theme--${currentTheme}`}>
       <TopBar setQuery={setQuery} setUnits={setUnits} units={units} />
       
       {loading && (
