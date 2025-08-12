@@ -58,15 +58,24 @@ const App = () => {
       <TopBar setQuery={setQuery} setUnits={setUnits} units={units} />
       
       {loading && (
-        <div className="loading-container" style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          height: '200px',
-          color: 'white',
-          fontSize: '18px'
-        }}>
-          Loading weather data...
+        <div className="skeleton" aria-busy="true" aria-live="polite">
+          <div className="skeleton-header">
+            <div className="skeleton-row" />
+          </div>
+
+          <div className="skeleton-current">
+            <div className="skeleton-temp skeleton-block" />
+            <div className="skeleton-title skeleton-block" />
+            <div className="skeleton-row" />
+            <div className="skeleton-row short" />
+          </div>
+
+          <div className="skeleton-forecast">
+            <div className="skeleton-chip" />
+            <div className="skeleton-chip" />
+            <div className="skeleton-chip" />
+            <div className="skeleton-chip" />
+          </div>
         </div>
       )}
       

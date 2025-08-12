@@ -5,7 +5,9 @@
 }
 .wholepage {
   background: linear-gradient(135deg, #00feba, #5b548a);
-  min-height: 100Dvh;
+  /* fallback then modern dynamic viewport height */
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -15,7 +17,7 @@
   gap: 100px;
   justify-content: space-evenly;
   align-content: center;
-  margin: 20;
+  margin: 20px;
 }
 /*topbar*/
 .utilitybar {
@@ -115,7 +117,7 @@
 }
 
 .units button {
-  background-color: none;
+  background-color: transparent;
   background: none;
   border: none;
   font-size: 24px;
@@ -360,5 +362,77 @@
     align-items: center;
     height: 22vh;
     width: 25%;
+  }
+}
+
+/* forecast container performance hint */
+.forecast-weather-box {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
+/* ------------------ skeleton loader ------------------ */
+.skeleton {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.skeleton-row,
+.skeleton-block,
+.skeleton-circle,
+.skeleton-chip {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+}
+
+/* shimmer */
+.skeleton-row::after,
+.skeleton-block::after,
+.skeleton-circle::after,
+.skeleton-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* layout pieces */
+.skeleton-header { height: 56px; }
+.skeleton-header .skeleton-row { height: 56px; border-radius: 28px; }
+
+.skeleton-current { display: grid; gap: 12px; }
+.skeleton-temp { height: 80px; }
+.skeleton-title { height: 24px; width: 50%; }
+.skeleton-row { height: 16px; }
+.skeleton-row.short { width: 60%; }
+
+.skeleton-circle { width: 72px; height: 72px; border-radius: 50%; }
+
+.skeleton-forecast { display: grid; grid-auto-flow: column; gap: 10px; overflow-x: auto; padding-block: 6px; }
+.skeleton-chip { width: 90px; height: 60px; border-radius: 14px; flex: 0 0 auto; }
+
+/* reduced motion: disable shimmer */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-row::after,
+  .skeleton-block::after,
+  .skeleton-circle::after,
+  .skeleton-chip::after {
+    animation: none !important;
   }
 }
