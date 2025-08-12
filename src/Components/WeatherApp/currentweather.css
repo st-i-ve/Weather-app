@@ -5,9 +5,7 @@
 }
 .wholepage {
   background: linear-gradient(135deg, #00feba, #5b548a);
-  border-radius: 20px;
-  margin: 1%;
-  height: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -224,7 +222,7 @@
   padding: 10px;
   border-radius: 15px;
   align-items: center;
-  height: 30vh;
+  height: 25vh;
   width: 25%;
   color: rgb(255, 255, 255);
   font-size: 14px;
