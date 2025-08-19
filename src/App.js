@@ -9,41 +9,46 @@ import ChatWidget from "./Components/WeatherApp/ChatWidget";
 // i added this helper to compute weather themes based on conditions and temperature
 const getWeatherTheme = (weather, units) => {
   if (!weather || !weather.details || weather.temp === undefined) {
-    return 'mild'; // fallback theme
+    return "mild"; // fallback theme
   }
 
   const { details, temp } = weather;
   const condition = details.toLowerCase();
 
   // i prioritize precipitation and severe conditions over temperature
-  if (condition.includes('rain') || condition.includes('drizzle')) {
-    return 'rainy';
+  if (condition.includes("rain") || condition.includes("drizzle")) {
+    return "rainy";
   }
-  if (condition.includes('thunderstorm') || condition.includes('storm')) {
-    return 'stormy';
+  if (condition.includes("thunderstorm") || condition.includes("storm")) {
+    return "stormy";
   }
-  if (condition.includes('snow')) {
-    return 'snowy';
+  if (condition.includes("snow")) {
+    return "snowy";
   }
-  if (condition.includes('mist') || condition.includes('fog') || condition.includes('haze') || condition.includes('smoke')) {
-    return 'foggy';
+  if (
+    condition.includes("mist") ||
+    condition.includes("fog") ||
+    condition.includes("haze") ||
+    condition.includes("smoke")
+  ) {
+    return "foggy";
   }
-  if (condition.includes('cloud')) {
-    return 'cloudy';
+  if (condition.includes("cloud")) {
+    return "cloudy";
   }
 
   // i use temperature thresholds for clear conditions
-  const warmThreshold = units === 'metric' ? 28 : 82;
-  const coldThreshold = units === 'metric' ? 10 : 50;
+  const warmThreshold = units === "metric" ? 28 : 82;
+  const coldThreshold = units === "metric" ? 10 : 50;
 
   if (temp >= warmThreshold) {
-    return 'warm';
+    return "warm";
   }
   if (temp <= coldThreshold) {
-    return 'cold';
+    return "cold";
   }
 
-  return 'mild'; // default green-bluish theme
+  return "mild"; // default green-bluish theme
 };
 
 const App = () => {
@@ -64,7 +69,9 @@ const App = () => {
         setWeather(data);
       } catch (err) {
         console.error("Failed to fetch weather:", err);
-        setError(err.message || "Failed to load weather data. Please try again.");
+        setError(
+          err.message || "Failed to load weather data. Please try again."
+        );
         setWeather(null);
       } finally {
         setLoading(false);
@@ -94,12 +101,12 @@ const App = () => {
   }, [units]);
 
   // i compute the theme based on current weather conditions
-  const currentTheme = weather ? getWeatherTheme(weather, units) : 'mild';
+  const currentTheme = weather ? getWeatherTheme(weather, units) : "mild";
 
   return (
     <div className={`wholepage theme--${currentTheme}`}>
       <TopBar setQuery={setQuery} setUnits={setUnits} units={units} />
-      
+
       {loading && (
         <div className="loading-container" aria-busy="true" aria-live="polite">
           <div className="dynamics">
@@ -208,28 +215,31 @@ const App = () => {
           </div>
         </div>
       )}
-      
+
       {error && (
-        <div className="error-container" style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          height: '200px',
-          color: '#ff6b6b',
-          fontSize: '16px',
-          textAlign: 'center',
-          padding: '20px'
-        }}>
+        <div
+          className="error-container"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "200px",
+            color: "#ff6b6b",
+            fontSize: "16px",
+            textAlign: "center",
+            padding: "20px",
+          }}
+        >
           <div>
             <h3>Weather data unavailable</h3>
             <p>{error}</p>
-            <p style={{ fontSize: '14px', marginTop: '10px' }}>
+            <p style={{ fontSize: "14px", marginTop: "10px" }}>
               Please check your internet connection and API key configuration.
             </p>
           </div>
         </div>
       )}
-      
+
       {weather && !loading && !error && (
         <div className="dynamics">
           <div className="current-weather-box">

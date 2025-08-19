@@ -56,15 +56,20 @@ const ChatWidget = ({ weather, units }) => {
 
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
-      <div className="toggle-button" onClick={toggleChat}>
-        <IoChatbubbleEllipsesOutline size={24} />
-      </div>
-      {isChatOpen && (
-        <div className="close-button" onClick={toggleChat}>
-          <IoClose size={16} />
+      {!isChatOpen && (
+        <div className="toggle-button" onClick={toggleChat}>
+          <IoChatbubbleEllipsesOutline size={24} />
         </div>
       )}
       <div className="chat-container">
+        {isChatOpen && (
+          <div className="chat-header">
+            <span className="chat-title">Weather Assistant</span>
+            <div className="close-button" onClick={toggleChat}>
+              <IoClose size={16} />
+            </div>
+          </div>
+        )}
         <div className="chat-box" ref={chatBoxRef}>
           {messages.map((message, index) => (
             <div key={index} className={`message ${message.sender}`}>
