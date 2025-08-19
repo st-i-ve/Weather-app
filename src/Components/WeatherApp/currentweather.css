@@ -137,16 +137,16 @@
 .dynamics {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 40px;
   justify-content: space-evenly;
   align-content: center;
-  margin: 20px;
+  margin: 10px;
 }
 /* unified dock with weather-adaptive theming */
 .unified-dock-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   /* i set up css variables for weather-adaptive colors */
   --dock-bg: rgba(142, 255, 225, 0.8);
   --dock-accent: rgba(142, 255, 225, 0.6);
@@ -372,7 +372,7 @@
 }
 
 .weather-image {
-  margin-top: 5%;
+  margin-top: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -436,9 +436,10 @@
 
 /*forecast*/
 .forecastcontainer {
-  margin: 32px;
+  margin: 16px;
 }
 .hourlyelements {
+  margin-top: 12px;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -539,10 +540,10 @@
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--forecast-border, rgba(255, 255, 255, 0.3));
-  padding: 20px 16px;
-  border-radius: 24px;
+  padding: 12px 10px;
+  border-radius: 20px;
   align-items: center;
-  height: 28vh;
+  height: 18vh;
   width: 25%;
   color: var(--forecast-text, rgba(255, 255, 255, 0.95));
   font-size: 15px;
@@ -714,10 +715,10 @@
 }
 .forecasthead {
   color: rgba(255, 255, 255, 0.95);
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.5px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -727,13 +728,13 @@
   font-size: inherit;
 }
 .dailyforecast {
-  margin-top: 55px;
+  margin-top: 20px;
 }
 .dailyelements {
-  margin-top: 20px;
+  margin-top: 12px;
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* i improved typography hierarchy for forecast elements */
@@ -798,7 +799,6 @@
   }
   .dynamics {
     flex-direction: column;
-
     width: 100%;
   }
   .current-weather-box {
