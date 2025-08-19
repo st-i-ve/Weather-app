@@ -10,47 +10,58 @@ const getdataThroughai = async (chatMessages, deriveddata, units) => {
 
     chatMessages = chatMessages ?? [];
 
-    // i build the conversation history for gemini
-    let conversationHistory = "";
-    chatMessages.forEach((messageObject) => {
-      if (messageObject.sender === "AI") {
-        conversationHistory += `Assistant: ${messageObject.text}\n`;
-      } else {
-        conversationHistory += `User: ${messageObject.text}\n`;
+    // i build proper conversation history for gemini's multi-turn format
+    const contents = [];
+    
+    // i add the system prompt as the first message
+    const systemPrompt = `You are a friendly agricultural assistant helping farmers in ${deriveddata.name}. Current weather conditions: ${deriveddata.details}, ${Math.round(deriveddata.temp)}°${units === 'metric' ? 'C' : 'F'}, humidity ${deriveddata.humidity}%.
+
+IMPORTANT CONTEXT RULES:
+- Remember our entire conversation history
+- Don't repeat information you've already shared
+- Build on previous responses naturally
+- Keep responses conversational and brief (4-5 sentences max)
+- Only provide detailed forecasts when specifically asked
+- Focus on practical farming advice based on current and upcoming weather
+
+Weather Data Available:
+${JSON.stringify(deriveddata, null, 2)}
+
+Respond as a knowledgeable but casual farming advisor who remembers what we've discussed.`;
+    
+    contents.push({
+      role: "user",
+      parts: [{ text: systemPrompt }]
+    });
+    
+    contents.push({
+      role: "model", 
+      parts: [{ text: "Hello! I'm here to help with your farming needs based on the current weather conditions in your area. What would you like to know?" }]
+    });
+    
+    // i add conversation history in proper format, skipping the initial greeting
+    chatMessages.slice(1).forEach((messageObject) => {
+      if (messageObject.sender === "user") {
+        contents.push({
+          role: "user",
+          parts: [{ text: messageObject.text }]
+        });
+      } else if (messageObject.sender === "responder") {
+        contents.push({
+          role: "model",
+          parts: [{ text: messageObject.text }]
+        });
       }
     });
 
-    // i create the system context with raw json data instead of manually formatting everything
-    const systemContext = `You are an agricultural officer providing weather-based farming advice. The user lives in ${deriveddata.name} and the units used are ${units}.
-
-Below is the complete weather data in JSON format. Please analyze this data and provide agricultural advice based on current conditions, hourly forecasts, and daily forecasts:
-
-WEATHER DATA:
-${JSON.stringify(deriveddata, null, 2)}
-
-${conversationHistory ? `Previous conversation:\n${conversationHistory}` : ''}
-
-Please analyze the weather data and respond as an agricultural officer providing practical farming advice. Focus on:
-- Current weather conditions and their impact on farming activities
-- Upcoming weather patterns and how farmers should prepare
-- Specific recommendations for planting, harvesting, irrigation, or other farm activities
-- Any weather-related risks or opportunities for crops
-
-Keep your response concise but informative.
-be more human dont give information unless asked to 
-the conversations should be short messages`;
-
-    // i use gemini's api structure
+    // i use gemini's proper multi-turn conversation structure
     const apiRequestBody = {
-      contents: [
-        {
-          parts: [
-            {
-              text: systemContext
-            }
-          ]
-        }
-      ]
+      contents: contents,
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 150,
+        topP: 0.8
+      }
     };
 
     const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent", {
