@@ -56,31 +56,27 @@ const ChatWidget = ({ weather, units }) => {
 
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
-      <div className="toggle-area" onClick={toggleChat}></div>{" "}
-      {/* Clickable area to toggle chat */}
       <div className="toggle-button" onClick={toggleChat}>
         {isChatOpen ? <IoClose size={24} /> : <IoChatbubbleEllipsesOutline size={24} />}
       </div>
-      {isChatOpen && (
-        <div>
-          <div className="chat-box" ref={chatBoxRef}>
-            {messages.map((message, index) => (
-              <div key={index} className={`message ${message.sender}`}>
-                <div className="message-bubble">{message.text}</div>
-              </div>
-            ))}
-          </div>
-          <form onSubmit={handleUserMessageSubmit} className="user-input">
-            <input
-              type="text"
-              value={userMessage}
-              onChange={handleInputChange}
-              placeholder="Type your message..."
-            />
-            <button type="submit">Send</button>
-          </form>
+      <div className="chat-container">
+        <div className="chat-box" ref={chatBoxRef}>
+          {messages.map((message, index) => (
+            <div key={index} className={`message ${message.sender}`}>
+              <div className="message-bubble">{message.text}</div>
+            </div>
+          ))}
         </div>
-      )}
+        <form onSubmit={handleUserMessageSubmit} className="user-input">
+          <input
+            type="text"
+            value={userMessage}
+            onChange={handleInputChange}
+            placeholder="Type your message..."
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
     </div>
   );
 };
