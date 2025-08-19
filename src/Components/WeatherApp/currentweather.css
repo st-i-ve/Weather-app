@@ -62,116 +62,218 @@
   align-content: center;
   margin: 20px;
 }
-/*topbar*/
-.utilitybar {
+/* unified dock with weather-adaptive theming */
+.unified-dock-container {
   display: flex;
-  flex-direction: row;
-  padding-top: 20px;
-  align-items: center;
   justify-content: center;
-  gap: 3px;
+  padding: 20px;
+  /* i set up css variables for weather-adaptive colors */
+  --dock-bg: rgba(142, 255, 225, 0.8);
+  --dock-accent: rgba(142, 255, 225, 0.6);
+  --dock-text: #202020;
+  --dock-input-bg: rgba(255, 255, 255, 0.95);
+  --dock-shadow: rgba(0, 0, 0, 0.1);
 }
 
-.top-bar {
-  display: flex;
-  justify-content: right;
-  width: 410px;
-  padding-left: 30px;
+/* theme-specific dock colors */
+.theme--warm .unified-dock-container {
+  --dock-bg: rgba(255, 138, 0, 0.8);
+  --dock-accent: rgba(255, 81, 47, 0.6);
+  --dock-text: #ffffff;
+  --dock-input-bg: rgba(255, 255, 255, 0.9);
+  --dock-shadow: rgba(255, 81, 47, 0.2);
 }
 
-.top-bar input {
+.theme--cold .unified-dock-container {
+  --dock-bg: rgba(179, 212, 255, 0.8);
+  --dock-accent: rgba(238, 245, 255, 0.6);
+  --dock-text: #1a365d;
+  --dock-input-bg: rgba(255, 255, 255, 0.95);
+  --dock-shadow: rgba(26, 54, 93, 0.15);
+}
+
+.theme--rainy .unified-dock-container {
+  --dock-bg: rgba(127, 199, 255, 0.8);
+  --dock-accent: rgba(43, 108, 176, 0.6);
+  --dock-text: #ffffff;
+  --dock-input-bg: rgba(255, 255, 255, 0.9);
+  --dock-shadow: rgba(43, 108, 176, 0.2);
+}
+
+.theme--cloudy .unified-dock-container {
+  --dock-bg: rgba(166, 192, 254, 0.8);
+  --dock-accent: rgba(207, 217, 223, 0.6);
+  --dock-text: #2d3748;
+  --dock-input-bg: rgba(255, 255, 255, 0.9);
+  --dock-shadow: rgba(45, 55, 72, 0.12);
+}
+
+.theme--snowy .unified-dock-container {
+  --dock-bg: rgba(223, 239, 255, 0.9);
+  --dock-accent: rgba(255, 255, 255, 0.7);
+  --dock-text: #2d3748;
+  --dock-input-bg: rgba(255, 255, 255, 0.95);
+  --dock-shadow: rgba(45, 55, 72, 0.1);
+}
+
+.theme--foggy .unified-dock-container {
+  --dock-bg: rgba(236, 239, 241, 0.85);
+  --dock-accent: rgba(207, 216, 220, 0.7);
+  --dock-text: #4a5568;
+  --dock-input-bg: rgba(255, 255, 255, 0.9);
+  --dock-shadow: rgba(74, 85, 104, 0.12);
+}
+
+.theme--stormy .unified-dock-container {
+  --dock-bg: rgba(55, 59, 68, 0.9);
+  --dock-accent: rgba(66, 134, 244, 0.6);
+  --dock-text: #ffffff;
+  --dock-input-bg: rgba(255, 255, 255, 0.85);
+  --dock-shadow: rgba(66, 134, 244, 0.3);
+}
+
+.unified-dock {
   display: flex;
+  align-items: center;
+  background: var(--dock-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 8px 16px;
+  gap: 12px;
+  box-shadow: 0 8px 32px var(--dock-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 300ms ease;
+  max-width: 600px;
+  width: auto;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+}
+
+.dock-search-input {
   width: 100%;
-  height: 70px;
-  background: #ffffff;
+  height: 48px;
+  background: var(--dock-input-bg);
   border: none;
   outline: none;
-  border-radius: 40px;
-  padding-left: 40px;
-  color: #272727;
-  font-size: 20px;
+  border-radius: 25px;
+  padding: 0 50px 0 20px;
+  color: #2d3748;
+  font-size: 16px;
   font-weight: 400;
+  transition: all 200ms ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-.searchIcon {
-  margin: 3px;
-  background: rgba(114, 255, 248, 0.356);
+.dock-search-input:focus {
+  box-shadow: 0 0 0 2px var(--dock-accent), inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  transform: scale(1.01);
+}
+
+.dock-search-input::placeholder {
+  color: #718096;
+  opacity: 0.8;
+}
+
+.dock-search-icon {
+  position: absolute;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: var(--dock-accent);
+  border-radius: 50%;
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.dock-search-icon:hover {
+  transform: scale(1.1);
+  background: var(--dock-accent);
+  filter: brightness(1.1);
+}
+
+.dock-search-icon img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
+.dock-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 4px;
+}
+
+.dock-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   cursor: pointer;
-  position: absolute;
+  transition: all 200ms ease;
 }
 
-.searchIcon img {
-  padding: 30%;
-  transition: ease-out;
-  transition-duration: 40ms;
+.dock-location:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.3);
 }
 
-.searchIcon img:hover {
-  transform: scale(1.2);
+.dock-location img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+  filter: brightness(0) invert(1);
 }
 
-.locationpin {
-  margin: 3px;
+.dock-units {
   display: flex;
-  width: 64px;
-  height: 64px;
-  padding: 18px;
-  background: #8effe1c9;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.09);
-  transition: ease-in;
-  transition-duration: 40ms;
-}
-
-.locationpin img {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  opacity: 0.7;
-  transition: ease-out;
-  transition-duration: 40ms;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
 }
 
-.locationpin img:hover {
-  transform: scale(1.15);
-}
-
-.units {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 24px;
-  color: #202020a8;
-  gap: 2px;
-  height: 64px;
-  background-color: #8effe1c9;
-  border-radius: 40px;
-  width: auto;
-  padding: 6px;
-  margin: 3px;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.09);
-}
-
-.units button {
-  background-color: transparent;
+.dock-units button {
   background: none;
   border: none;
-  font-size: 24px;
-  color: #202020cb;
-  font-weight: 400;
-  transition: ease-out;
-  transition-duration: 40ms;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dock-text);
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 15px;
+  transition: all 200ms ease;
+  opacity: 0.7;
 }
 
-.units button:hover {
-  transform: scale(1.15);
+.dock-units button:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.dock-units button.active {
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.unit-separator {
+  color: var(--dock-text);
+  opacity: 0.5;
+  font-weight: 300;
 }
 /*currentweather*/
 .current-weather-box {
@@ -293,7 +395,39 @@
   gap: 7px;
 }
 
+/* responsive design for unified dock */
 @media only screen and (max-width: 850px) {
+  .unified-dock-container {
+    padding: 15px 10px;
+  }
+  
+  .unified-dock {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 25px;
+    max-width: 90vw;
+  }
+  
+  .search-section {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+  .dock-divider {
+    width: 80%;
+    height: 1px;
+    margin: 4px 0;
+  }
+  
+  .dock-location {
+    align-self: center;
+  }
+  
+  .dock-units {
+    align-self: center;
+  }
+
   .wholepage {
     border-radius: 0px;
     margin: 0%;

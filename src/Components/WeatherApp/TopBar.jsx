@@ -37,30 +37,44 @@ export default function TopBar({ setQuery, units, setUnits }) {
   };
 
   return (
-    <div>
-      <div className="utilitybar">
-        <div className="top-bar">
+    <div className="unified-dock-container">
+      <div className="unified-dock">
+        <div className="search-section">
           <input
             value={city}
             onChange={(e) => setCity(e.currentTarget.value)}
             type="text"
-            className="cityInput"
-            placeholder="Search"
+            className="dock-search-input"
+            placeholder="Search location..."
             onKeyDown={handleKeyPress}
           />
-          <div className="searchIcon" onClick={search}>
-            <img src={search_icon} alt="" />
+          <div className="dock-search-icon" onClick={search}>
+            <img src={search_icon} alt="Search" />
           </div>
         </div>
-        <div className="locationpin" onClick={location}>
-          <img src={pin} alt="Location pin" />
+        
+        <div className="dock-divider"></div>
+        
+        <div className="dock-location" onClick={location}>
+          <img src={pin} alt="Use current location" />
         </div>
-        <div className="units">
-          <button name="metric" onClick={unitChange}>
+        
+        <div className="dock-divider"></div>
+        
+        <div className="dock-units">
+          <button 
+            name="metric" 
+            onClick={unitChange}
+            className={units === 'metric' ? 'active' : ''}
+          >
             °C
           </button>
-          <p>|</p>
-          <button name="imperial" onClick={unitChange}>
+          <span className="unit-separator">|</span>
+          <button 
+            name="imperial" 
+            onClick={unitChange}
+            className={units === 'imperial' ? 'active' : ''}
+          >
             °F
           </button>
         </div>
