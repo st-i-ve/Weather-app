@@ -101,23 +101,34 @@ const App = () => {
       <TopBar setQuery={setQuery} setUnits={setUnits} units={units} />
       
       {loading && (
-        <div className="skeleton" aria-busy="true" aria-live="polite">
-          <div className="skeleton-header">
-            <div className="skeleton-row" />
-          </div>
-
-          <div className="skeleton-current">
-            <div className="skeleton-temp skeleton-block" />
-            <div className="skeleton-title skeleton-block" />
-            <div className="skeleton-row" />
-            <div className="skeleton-row short" />
-          </div>
-
-          <div className="skeleton-forecast">
-            <div className="skeleton-chip" />
-            <div className="skeleton-chip" />
-            <div className="skeleton-chip" />
-            <div className="skeleton-chip" />
+        <div className="loading-container" aria-busy="true" aria-live="polite">
+          <div className="cuurent-weather">
+            <div className="weather-image">
+              <div className="placeholder-icon"></div>
+            </div>
+            <div className="weather-temp">
+              <span className="placeholder-temp"></span>
+            </div>
+            <div className="city-name">
+              <p className="placeholder-city"></p>
+            </div>
+            <div className="data-container">
+              <div className="element">
+                <div className="icon placeholder-small-icon"></div>
+                <div className="data">
+                  <div className="text">Humidity :</div>
+                  <div className="humidity_percentage placeholder-value"></div>
+                </div>
+              </div>
+              <p className="divider">|</p>
+              <div className="element">
+                <div className="icon placeholder-small-icon"></div>
+                <div className="data">
+                  <div className="text">Windspeed :</div>
+                  <div className="wind_speed placeholder-value"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
