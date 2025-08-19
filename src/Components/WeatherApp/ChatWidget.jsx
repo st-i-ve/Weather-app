@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatWidget.css";
 import getdataThroughai from "../services/weatheraitest";
+import { IoChatbubbleEllipsesOutline, IoClose } from "react-icons/io5";
 
 const ChatWidget = ({ weather, units }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -58,7 +59,7 @@ const ChatWidget = ({ weather, units }) => {
       <div className="toggle-area" onClick={toggleChat}></div>{" "}
       {/* Clickable area to toggle chat */}
       <div className="toggle-button" onClick={toggleChat}>
-        {isChatOpen ? "Close Chat" : "Open Chat"}
+        {isChatOpen ? <IoClose size={24} /> : <IoChatbubbleEllipsesOutline size={24} />}
       </div>
       {isChatOpen && (
         <div>
