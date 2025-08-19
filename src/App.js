@@ -116,7 +116,7 @@ const App = () => {
                 </div>
                 <div className="data-container">
                   <div className="element">
-                    <div className="icon placeholder-small-icon"></div>
+                    <img src={require('./Components/Assets/humidity.png')} className="icon" alt="humidity" />
                     <div className="data">
                       <div className="text">Humidity :</div>
                       <div className="humidity_percentage placeholder-value"></div>
@@ -124,7 +124,7 @@ const App = () => {
                   </div>
                   <p className="divider">|</p>
                   <div className="element">
-                    <div className="icon placeholder-small-icon"></div>
+                    <img src={require('./Components/Assets/wind.png')} className="icon" alt="wind" />
                     <div className="data">
                       <div className="text">Windspeed :</div>
                       <div className="wind_speed placeholder-value"></div>
