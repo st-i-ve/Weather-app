@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatWidget.css";
 import getdataThroughai from "../services/weatheraitest";
-import { IoChatbubbleEllipsesOutline, IoClose } from "react-icons/io5";
+import { IoChatbubbleEllipsesOutline, IoClose, IoSend } from "react-icons/io5";
 
 const ChatWidget = ({ weather, units }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -57,8 +57,13 @@ const ChatWidget = ({ weather, units }) => {
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
       <div className="toggle-button" onClick={toggleChat}>
-        {isChatOpen ? <IoClose size={24} /> : <IoChatbubbleEllipsesOutline size={24} />}
+        <IoChatbubbleEllipsesOutline size={24} />
       </div>
+      {isChatOpen && (
+        <div className="close-button" onClick={toggleChat}>
+          <IoClose size={16} />
+        </div>
+      )}
       <div className="chat-container">
         <div className="chat-box" ref={chatBoxRef}>
           {messages.map((message, index) => (
@@ -74,7 +79,9 @@ const ChatWidget = ({ weather, units }) => {
             onChange={handleInputChange}
             placeholder="Type your message..."
           />
-          <button type="submit">Send</button>
+          <button type="submit" className="send-button">
+            <IoSend size={18} />
+          </button>
         </form>
       </div>
     </div>
