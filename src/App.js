@@ -102,30 +102,96 @@ const App = () => {
       
       {loading && (
         <div className="loading-container" aria-busy="true" aria-live="polite">
-          <div className="cuurent-weather">
-            <div className="weather-image">
-              <div className="placeholder-icon"></div>
-            </div>
-            <div className="weather-temp">
-              <span className="placeholder-temp"></span>
-            </div>
-            <div className="city-name">
-              <p className="placeholder-city"></p>
-            </div>
-            <div className="data-container">
-              <div className="element">
-                <div className="icon placeholder-small-icon"></div>
-                <div className="data">
-                  <div className="text">Humidity :</div>
-                  <div className="humidity_percentage placeholder-value"></div>
+          <div className="dynamics">
+            <div className="current-weather-box">
+              <div className="cuurent-weather">
+                <div className="weather-image">
+                  <div className="placeholder-icon"></div>
+                </div>
+                <div className="weather-temp">
+                  <span className="placeholder-temp"></span>
+                </div>
+                <div className="city-name">
+                  <p className="placeholder-city"></p>
+                </div>
+                <div className="data-container">
+                  <div className="element">
+                    <div className="icon placeholder-small-icon"></div>
+                    <div className="data">
+                      <div className="text">Humidity :</div>
+                      <div className="humidity_percentage placeholder-value"></div>
+                    </div>
+                  </div>
+                  <p className="divider">|</p>
+                  <div className="element">
+                    <div className="icon placeholder-small-icon"></div>
+                    <div className="data">
+                      <div className="text">Windspeed :</div>
+                      <div className="wind_speed placeholder-value"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p className="divider">|</p>
-              <div className="element">
-                <div className="icon placeholder-small-icon"></div>
-                <div className="data">
-                  <div className="text">Windspeed :</div>
-                  <div className="wind_speed placeholder-value"></div>
+            </div>
+            <div className="forecast-weather-box">
+              <div className="forecastcontainer">
+                <div className="dailyforecast">
+                  <div className="forecasthead">
+                    <h2>hourly forecast</h2>
+                  </div>
+                  <hr />
+                  <div className="dailyelements">
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-time"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-time"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-time"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-time"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="forecastcontainer">
+                <div className="dailyforecast">
+                  <div className="forecasthead">
+                    <h2>daily forecast</h2>
+                  </div>
+                  <hr />
+                  <div className="dailyelements">
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-day"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-day"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-day"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-day"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

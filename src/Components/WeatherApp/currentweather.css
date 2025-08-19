@@ -461,6 +461,37 @@
   animation: pulse 1.5s ease-in-out infinite;
 }
 
+.placeholder-forecast-item {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.placeholder-forecast-time,
+.placeholder-forecast-day {
+  width: 60px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 8px;
+}
+
+.placeholder-forecast-icon {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  animation: pulse 1.5s ease-in-out infinite;
+  margin: 8px 0;
+}
+
+.placeholder-forecast-temp {
+  width: 40px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
 @keyframes pulse {
   0%, 100% {
     opacity: 0.6;
@@ -475,7 +506,11 @@
   .placeholder-temp,
   .placeholder-city,
   .placeholder-small-icon,
-  .placeholder-value {
+  .placeholder-value,
+  .placeholder-forecast-time,
+  .placeholder-forecast-day,
+  .placeholder-forecast-icon,
+  .placeholder-forecast-temp {
     animation: none;
     opacity: 0.4;
   }
