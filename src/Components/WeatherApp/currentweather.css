@@ -18,34 +18,114 @@
 .wholepage.theme--warm {
   /* orangeish warm */
   background: linear-gradient(135deg, #ff8a00, #ff512f);
+  /* i added forecast theming for warm weather */
+  --forecast-bg-start: rgba(255, 138, 0, 0.3);
+  --forecast-bg-mid: rgba(255, 81, 47, 0.2);
+  --forecast-bg-end: rgba(255, 255, 255, 0.1);
+  --forecast-border: rgba(255, 138, 0, 0.4);
+  --forecast-text: rgba(255, 255, 255, 0.98);
+  --forecast-shadow-primary: rgba(255, 81, 47, 0.15);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.1);
+  --forecast-highlight: rgba(255, 255, 255, 0.5);
+  --forecast-lowlight: rgba(255, 138, 0, 0.2);
 }
 .wholepage.theme--cold {
   /* whitish/icy */
   background: linear-gradient(135deg, #eef5ff, #b3d4ff);
+  /* i added forecast theming for cold weather */
+  --forecast-bg-start: rgba(179, 212, 255, 0.35);
+  --forecast-bg-mid: rgba(238, 245, 255, 0.25);
+  --forecast-bg-end: rgba(255, 255, 255, 0.15);
+  --forecast-border: rgba(179, 212, 255, 0.5);
+  --forecast-text: rgba(255, 255, 255, 0.95);
+  --forecast-shadow-primary: rgba(179, 212, 255, 0.2);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.08);
+  --forecast-highlight: rgba(255, 255, 255, 0.6);
+  --forecast-lowlight: rgba(179, 212, 255, 0.3);
 }
 .wholepage.theme--mild {
   /* green-bluish average */
   background: linear-gradient(135deg, #00feba, #5b548a);
+  /* i added forecast theming for mild weather */
+  --forecast-bg-start: rgba(0, 254, 186, 0.28);
+  --forecast-bg-mid: rgba(91, 84, 138, 0.18);
+  --forecast-bg-end: rgba(255, 255, 255, 0.12);
+  --forecast-border: rgba(0, 254, 186, 0.35);
+  --forecast-text: rgba(255, 255, 255, 0.95);
+  --forecast-shadow-primary: rgba(0, 254, 186, 0.12);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.08);
+  --forecast-highlight: rgba(255, 255, 255, 0.4);
+  --forecast-lowlight: rgba(0, 254, 186, 0.15);
 }
 .wholepage.theme--rainy {
   /* bluish rainy */
   background: linear-gradient(135deg, #7fc7ff, #2b6cb0);
+  /* i added forecast theming for rainy weather */
+  --forecast-bg-start: rgba(127, 199, 255, 0.32);
+  --forecast-bg-mid: rgba(43, 108, 176, 0.22);
+  --forecast-bg-end: rgba(255, 255, 255, 0.12);
+  --forecast-border: rgba(127, 199, 255, 0.4);
+  --forecast-text: rgba(255, 255, 255, 0.96);
+  --forecast-shadow-primary: rgba(43, 108, 176, 0.18);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.1);
+  --forecast-highlight: rgba(255, 255, 255, 0.45);
+  --forecast-lowlight: rgba(127, 199, 255, 0.2);
 }
 .wholepage.theme--cloudy {
   /* grey-blue cloudy */
   background: linear-gradient(135deg, #cfd9df, #a6c0fe);
+  /* i added forecast theming for cloudy weather */
+  --forecast-bg-start: rgba(166, 192, 254, 0.3);
+  --forecast-bg-mid: rgba(207, 217, 223, 0.2);
+  --forecast-bg-end: rgba(255, 255, 255, 0.1);
+  --forecast-border: rgba(166, 192, 254, 0.35);
+  --forecast-text: rgba(255, 255, 255, 0.92);
+  --forecast-shadow-primary: rgba(166, 192, 254, 0.15);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.08);
+  --forecast-highlight: rgba(255, 255, 255, 0.4);
+  --forecast-lowlight: rgba(166, 192, 254, 0.18);
 }
 .wholepage.theme--snowy {
   /* white to light-blue snowy */
   background: linear-gradient(135deg, #ffffff, #dfefff);
+  /* i added forecast theming for snowy weather */
+  --forecast-bg-start: rgba(223, 239, 255, 0.4);
+  --forecast-bg-mid: rgba(255, 255, 255, 0.3);
+  --forecast-bg-end: rgba(255, 255, 255, 0.15);
+  --forecast-border: rgba(223, 239, 255, 0.6);
+  --forecast-text: rgba(255, 255, 255, 0.98);
+  --forecast-shadow-primary: rgba(223, 239, 255, 0.25);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.06);
+  --forecast-highlight: rgba(255, 255, 255, 0.7);
+  --forecast-lowlight: rgba(223, 239, 255, 0.3);
 }
 .wholepage.theme--foggy {
   /* low contrast fog */
   background: linear-gradient(135deg, #eceff1, #cfd8dc);
+  /* i added forecast theming for foggy weather */
+  --forecast-bg-start: rgba(207, 216, 220, 0.35);
+  --forecast-bg-mid: rgba(236, 239, 241, 0.25);
+  --forecast-bg-end: rgba(255, 255, 255, 0.15);
+  --forecast-border: rgba(207, 216, 220, 0.4);
+  --forecast-text: rgba(255, 255, 255, 0.9);
+  --forecast-shadow-primary: rgba(207, 216, 220, 0.2);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.08);
+  --forecast-highlight: rgba(255, 255, 255, 0.5);
+  --forecast-lowlight: rgba(207, 216, 220, 0.25);
 }
 .wholepage.theme--stormy {
   /* darker blue/purple storm */
   background: linear-gradient(135deg, #373b44, #4286f4);
+  /* i added forecast theming for stormy weather */
+  --forecast-bg-start: rgba(66, 134, 244, 0.35);
+  --forecast-bg-mid: rgba(55, 59, 68, 0.25);
+  --forecast-bg-end: rgba(255, 255, 255, 0.08);
+  --forecast-border: rgba(66, 134, 244, 0.45);
+  --forecast-text: rgba(255, 255, 255, 0.98);
+  --forecast-shadow-primary: rgba(55, 59, 68, 0.25);
+  --forecast-shadow-secondary: rgba(0, 0, 0, 0.15);
+  --forecast-highlight: rgba(255, 255, 255, 0.4);
+  --forecast-lowlight: rgba(66, 134, 244, 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -148,6 +228,7 @@
 }
 
 .search-section {
+  margin-left: -1%;
   display: flex;
   align-items: center;
   position: relative;
@@ -362,38 +443,315 @@
   flex-direction: row;
   gap: 10px;
 }
+
+/* i added responsive design improvements for better mobile experience */
+@media (max-width: 768px) {
+  .f_element {
+    height: 24vh;
+    padding: 16px 12px;
+    border-radius: 20px;
+  }
+  
+  .f_element img {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .f_element .day {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  .f_element .day-temp {
+    font-size: 18px;
+    margin-top: 6px;
+  }
+  
+  .forecasthead {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .dailyelements, .hourlyelements {
+    gap: 8px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .f_element {
+    height: 20vh;
+    padding: 12px 8px;
+    border-radius: 16px;
+  }
+  
+  .f_element img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .f_element .day {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  
+  .f_element .day-temp {
+    font-size: 16px;
+    margin-top: 4px;
+  }
+  
+  .forecasthead {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .dailyelements, .hourlyelements {
+    gap: 6px;
+    margin-top: 12px;
+  }
+  
+  /* i reduced hover effects on mobile for better performance */
+  .f_element:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
 .f_element {
   text-align: center;
-  justify-content: center;
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #e6f8f328, rgba(255, 255, 255, 0.2));
-  padding: 10px;
-  border-radius: 15px;
+  /* i created advanced glassmorphism with multiple layers */
+  background: 
+    linear-gradient(135deg, 
+      var(--forecast-bg-start, rgba(255, 255, 255, 0.25)) 0%,
+      var(--forecast-bg-mid, rgba(255, 255, 255, 0.15)) 50%,
+      var(--forecast-bg-end, rgba(255, 255, 255, 0.08)) 100%),
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%
+    );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--forecast-border, rgba(255, 255, 255, 0.3));
+  padding: 20px 16px;
+  border-radius: 24px;
   align-items: center;
-  height: 25vh;
+  height: 28vh;
   width: 25%;
-  color: rgb(255, 255, 255);
-  font-size: 14px;
-  font-weight: 400;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.09);
+  color: var(--forecast-text, rgba(255, 255, 255, 0.95));
+  font-size: 15px;
+  font-weight: 500;
+  /* i added sophisticated multi-layered shadows */
+  box-shadow: 
+    0 8px 32px var(--forecast-shadow-primary, rgba(0, 0, 0, 0.12)),
+    0 2px 16px var(--forecast-shadow-secondary, rgba(0, 0, 0, 0.08)),
+    inset 0 1px 0 var(--forecast-highlight, rgba(255, 255, 255, 0.4)),
+    inset 0 -1px 0 var(--forecast-lowlight, rgba(255, 255, 255, 0.1));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* i added sophisticated gradient overlays for enhanced depth */
+.f_element::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 60%
+    );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.f_element:hover::after {
+  opacity: 1;
 }
 
 .f_element img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* i added sophisticated hover effects and micro-interactions */
+.f_element:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 16px 48px var(--forecast-shadow-primary, rgba(0, 0, 0, 0.18)),
+    0 8px 24px var(--forecast-shadow-secondary, rgba(0, 0, 0, 0.12)),
+    inset 0 1px 0 var(--forecast-highlight, rgba(255, 255, 255, 0.5)),
+    inset 0 -1px 0 var(--forecast-lowlight, rgba(255, 255, 255, 0.15));
+  border-color: var(--forecast-border, rgba(255, 255, 255, 0.4));
+}
+
+.f_element:hover img {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.f_element:active {
+  transform: translateY(-4px) scale(1.01);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* i added a subtle shimmer effect on hover */
+.f_element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
   width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.f_element:hover::before {
+  left: 100%;
+}
+
+/* i added loading state animations and skeleton placeholders */
+.f_element.loading {
+  background: 
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.f_element.loading img,
+.f_element.loading .day,
+.f_element.loading .day-temp {
+  opacity: 0;
+}
+
+.f_element.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: loading-spinner 1s linear infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.01);
+  }
+}
+
+@keyframes loading-spinner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* i added skeleton placeholders for text content */
+.skeleton-text {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+  height: 1em;
+  margin: 4px 0;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 .forecasthead {
-  color: rgb(255, 255, 255);
-  font-size: 22px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forecasthead h2 {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
 }
 .dailyforecast {
   margin-top: 55px;
 }
 .dailyelements {
-  margin-top: 5px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
-  gap: 7px;
+  gap: 12px;
+}
+
+/* i improved typography hierarchy for forecast elements */
+.f_element .day {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.f_element .day-temp {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-top: 8px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* responsive design for unified dock */
@@ -411,6 +769,7 @@
   }
   
   .search-section {
+    margin-left: -1%;
     min-width: 100%;
     width: 100%;
   }
