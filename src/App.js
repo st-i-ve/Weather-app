@@ -161,6 +161,11 @@ const App = () => {
                       <div className="w-day-img placeholder-forecast-icon"></div>
                       <div className="day-temp placeholder-forecast-temp"></div>
                     </div>
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-time"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -171,6 +176,11 @@ const App = () => {
                   </div>
                   <hr />
                   <div className="dailyelements">
+                    <div className="f_element placeholder-forecast-item">
+                      <div className="day placeholder-forecast-day"></div>
+                      <div className="w-day-img placeholder-forecast-icon"></div>
+                      <div className="day-temp placeholder-forecast-temp"></div>
+                    </div>
                     <div className="f_element placeholder-forecast-item">
                       <div className="day placeholder-forecast-day"></div>
                       <div className="w-day-img placeholder-forecast-icon"></div>

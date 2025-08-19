@@ -463,6 +463,13 @@
 
 .placeholder-forecast-item {
   background: rgba(255, 255, 255, 0.05) !important;
+  min-width: 80px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px;
 }
 
 .placeholder-forecast-time,
