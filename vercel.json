@@ -3,9 +3,5 @@
     "api/**/*.js": {
       "runtime": "nodejs18.x"
     }
-  },
-  "env": {
-    "GEMINI_API_KEY": "@gemini-api-key",
-    "WEATHER_API_KEY": "@weather-api-key"
   }
 }
