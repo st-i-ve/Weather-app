@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getFormattedWeatherData from "../api/weatherService";
+import getFormattedWeatherData from "./api/weatherService";
 import TopBar from "./Components/WeatherApp/TopBar";
 import CurrentWeather from "./Components/WeatherApp/CurrentWeather";
 import Forecast from "./Components/WeatherApp/Forecast";
