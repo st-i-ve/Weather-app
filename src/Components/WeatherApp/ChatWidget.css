@@ -1,18 +1,9 @@
 /* modern glassmorphism chat widget with weather-adaptive theming */
-/* floating dock container */
-.floating-dock {
+.chat-widget {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-end;
-}
-
-.chat-widget {
-  position: relative;
   /* i set up css variables that will adapt to weather themes */
   --chat-primary: #667eea;
   --chat-secondary: #764ba2;
@@ -100,49 +91,6 @@
   opacity: 1;
 }
 
-/* dock button base styles */
-.dock-button {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: visible;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.dock-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.6s;
-  border-radius: 50%;
-}
-
-.dock-button:hover::before {
-  left: 100%;
-}
-
-.dock-button:hover {
-  transform: translateY(-2px) scale(1.05);
-}
-
-/* chat toggle button */
 .toggle-button {
   background: linear-gradient(
     135deg,
@@ -150,71 +98,21 @@
     var(--chat-secondary) 100%
   );
   color: #ffffff;
-  box-shadow: 0 4px 20px var(--chat-accent);
-}
-
-.toggle-button:hover {
-  box-shadow: 0 8px 25px var(--chat-accent);
-}
-
-/* help button */
-.help-button {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.help-button:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.15) 100%
-  );
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* button labels */
-.button-label {
-  position: absolute;
-  right: 70px;
-  top: 50%;
-  transform: translateY(-50%) translateX(10px);
-  background: rgba(0, 0, 0, 0.8);
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.button-label::after {
-  content: "";
   position: absolute;
-  top: 50%;
-  right: -6px;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-left: 6px solid rgba(0, 0, 0, 0.8);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-}
-
-.dock-button:hover .button-label {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 1001;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 0;
+  box-shadow: 0 4px 20px var(--chat-accent);
 }
 
 .chat-widget.open .toggle-button {
@@ -223,12 +121,8 @@
   height: auto;
   border-radius: 24px 24px 0 0;
   padding: 16px 20px;
-  box-shadow: none;
-  transform: none;
-}
-
-.chat-widget.open .toggle-button:hover {
-  transform: none;
+  bottom: auto;
+  right: auto;
   box-shadow: none;
 }
 
@@ -369,7 +263,6 @@
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
 }
 .close-icon {
   color: #ffffff;

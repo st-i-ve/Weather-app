@@ -452,28 +452,29 @@
     padding: 16px 12px;
     border-radius: 20px;
   }
-  
+
   .f_element img {
     width: 48px;
     height: 48px;
   }
-  
+
   .f_element .day {
     font-size: 11px;
     margin-bottom: 6px;
   }
-  
+
   .f_element .day-temp {
     font-size: 18px;
     margin-top: 6px;
   }
-  
+
   .forecasthead {
     font-size: 24px;
     margin-bottom: 12px;
   }
-  
-  .dailyelements, .hourlyelements {
+
+  .dailyelements,
+  .hourlyelements {
     gap: 8px;
     margin-top: 16px;
   }
@@ -485,32 +486,33 @@
     padding: 12px 8px;
     border-radius: 16px;
   }
-  
+
   .f_element img {
     width: 40px;
     height: 40px;
   }
-  
+
   .f_element .day {
     font-size: 10px;
     margin-bottom: 4px;
   }
-  
+
   .f_element .day-temp {
     font-size: 16px;
     margin-top: 4px;
   }
-  
+
   .forecasthead {
     font-size: 20px;
     margin-bottom: 8px;
   }
-  
-  .dailyelements, .hourlyelements {
+
+  .dailyelements,
+  .hourlyelements {
     gap: 6px;
     margin-top: 12px;
   }
-  
+
   /* i reduced hover effects on mobile for better performance */
   .f_element:hover {
     transform: translateY(-4px) scale(1.01);
@@ -522,11 +524,12 @@
   display: flex;
   flex-direction: column;
   /* i created advanced glassmorphism with multiple layers */
-  background: 
-    linear-gradient(135deg, 
+  background: linear-gradient(
+      135deg,
       var(--forecast-bg-start, rgba(255, 255, 255, 0.25)) 0%,
       var(--forecast-bg-mid, rgba(255, 255, 255, 0.15)) 50%,
-      var(--forecast-bg-end, rgba(255, 255, 255, 0.08)) 100%),
+      var(--forecast-bg-end, rgba(255, 255, 255, 0.08)) 100%
+    ),
     radial-gradient(
       circle at 30% 20%,
       rgba(255, 255, 255, 0.15) 0%,
@@ -549,8 +552,7 @@
   font-size: 15px;
   font-weight: 500;
   /* i added sophisticated multi-layered shadows */
-  box-shadow: 
-    0 8px 32px var(--forecast-shadow-primary, rgba(0, 0, 0, 0.12)),
+  box-shadow: 0 8px 32px var(--forecast-shadow-primary, rgba(0, 0, 0, 0.12)),
     0 2px 16px var(--forecast-shadow-secondary, rgba(0, 0, 0, 0.08)),
     inset 0 1px 0 var(--forecast-highlight, rgba(255, 255, 255, 0.4)),
     inset 0 -1px 0 var(--forecast-lowlight, rgba(255, 255, 255, 0.1));
@@ -561,14 +563,13 @@
 
 /* i added sophisticated gradient overlays for enhanced depth */
 .f_element::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    linear-gradient(
+  background: linear-gradient(
       45deg,
       transparent 30%,
       rgba(255, 255, 255, 0.05) 50%,
@@ -599,8 +600,7 @@
 /* i added sophisticated hover effects and micro-interactions */
 .f_element:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 16px 48px var(--forecast-shadow-primary, rgba(0, 0, 0, 0.18)),
+  box-shadow: 0 16px 48px var(--forecast-shadow-primary, rgba(0, 0, 0, 0.18)),
     0 8px 24px var(--forecast-shadow-secondary, rgba(0, 0, 0, 0.12)),
     inset 0 1px 0 var(--forecast-highlight, rgba(255, 255, 255, 0.5)),
     inset 0 -1px 0 var(--forecast-lowlight, rgba(255, 255, 255, 0.15));
@@ -619,7 +619,7 @@
 
 /* i added a subtle shimmer effect on hover */
 .f_element::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -640,13 +640,12 @@
 
 /* i added loading state animations and skeleton placeholders */
 .f_element.loading {
-  background: 
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.08) 50%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 
@@ -657,7 +656,7 @@
 }
 
 .f_element.loading::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -671,7 +670,8 @@
 }
 
 @keyframes skeleton-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
@@ -760,7 +760,7 @@
   .unified-dock-container {
     padding: 15px 10px;
   }
-  
+
   .unified-dock {
     flex-direction: column;
     gap: 8px;
@@ -768,23 +768,23 @@
     border-radius: 25px;
     max-width: 90vw;
   }
-  
+
   .search-section {
     margin-left: -1%;
     min-width: 100%;
     width: 100%;
   }
-  
+
   .dock-divider {
     width: 80%;
     height: 1px;
     margin: 4px 0;
   }
-  
+
   .dock-location {
     align-self: center;
   }
-  
+
   .dock-units {
     align-self: center;
   }
