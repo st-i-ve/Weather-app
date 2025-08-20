@@ -1,26 +1,18 @@
-// i updated this to call the serverless function instead of directly using API keys
-// this ensures weather api keys stay secure on the server side
+// i updated this to use the automatic api configuration for local/production environments
+// this ensures weather api keys stay secure and works both locally and on vercel
 
 import { DateTime } from "luxon";
+import { apiRequest } from '../utils/apiConfig';
 
 const getFormattedWeatherData = async (searchParams) => {
   try {
-    const response = await fetch('/api/weather', {
+    const data = await apiRequest('/api/weather', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({
         searchParams
       })
     });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to fetch weather data');
-    }
-
-    const data = await response.json();
+    
     return data;
   } catch (error) {
     console.error("Error fetching weather data:", error);

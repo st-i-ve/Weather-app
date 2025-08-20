@@ -1,53 +1,202 @@
-# Getting Started with Create React App
+# Weather App with AI Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based weather application with AI-powered chat functionality that seamlessly works in both local development and Vercel production environments.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 🌤️ Real-time weather data from OpenWeatherMap API
+- 🤖 AI-powered chat using Google Gemini API
+- 🔄 Automatic environment detection (local vs production)
+- 🔒 Secure server-side API key handling
+- 📱 Responsive design with modern UI
 
-### `npm start`
+## Architecture
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Serverless Fallback Mechanism
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project implements a hybrid approach that allows serverless functions to work seamlessly in both local development and Vercel production:
 
-### `npm test`
+- **Production (Vercel)**: Uses native Vercel serverless functions in `/api` directory
+- **Local Development**: Uses Express server that wraps the same serverless functions
+- **Automatic Detection**: Environment-aware configuration switches between endpoints automatically
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Project Structure
 
-### `npm run build`
+```
+├── api/                    # Vercel serverless functions
+│   ├── ai-chat.js         # AI chat endpoint
+│   └── weather.js         # Weather data endpoint
+├── server/                # Local development server
+│   └── local-api.js       # Express server wrapping API functions
+├── src/
+│   ├── Service/           # API service layer
+│   │   ├── AIservice.js   # AI chat service
+│   │   └── weatherService.js # Weather service
+│   ├── utils/
+│   │   └── apiConfig.js   # Environment detection utility
+│   └── Components/        # React components
+└── .env.example          # Environment variables template
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js (v14 or higher)
+- npm or yarn
+- OpenWeatherMap API key
+- Google Gemini API key
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Weather-app
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   Edit `.env.local` and add your API keys:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   WEATHER_API_KEY=your_weather_api_key_here
+   NODE_ENV=development
+   LOCAL_API_PORT=3001
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Get API Keys**
+   - **OpenWeatherMap**: Sign up at [openweathermap.org](https://openweathermap.org/api)
+   - **Google Gemini**: Get your key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
-## Learn More
+### Development
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Start both servers simultaneously:**
+```bash
+npm run dev
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This command runs:
+- React development server on `http://localhost:3000`
+- Local API server on `http://localhost:3001`
 
-### Code Splitting
+**Alternative commands:**
+```bash
+# Start only React app (requires Vercel deployment for APIs)
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Start only local API server
+npm run dev:api
+
+# Build for production
+npm run build
+
+# Run tests
+npm test
+```
+
+### Deployment
+
+**Deploy to Vercel:**
+
+1. Connect your repository to Vercel
+2. Set environment variables in Vercel dashboard:
+   - `GEMINI_API_KEY`
+   - `WEATHER_API_KEY`
+3. Deploy - no code changes needed!
+
+The application automatically detects the Vercel environment and uses the appropriate API endpoints.
+
+## How It Works
+
+### Environment Detection
+
+The `src/utils/apiConfig.js` utility automatically detects the environment:
+
+```javascript
+// Detects if running locally vs on Vercel
+const isLocal = !process.env.VERCEL && process.env.NODE_ENV === 'development';
+const API_BASE_URL = isLocal ? 'http://localhost:3001' : '';
+```
+
+### API Services
+
+Both weather and AI services use the same `apiRequest` wrapper that handles:
+- Automatic endpoint routing
+- Error handling
+- JSON parsing
+- CORS headers
+
+### Local Development Server
+
+The Express server (`server/local-api.js`) dynamically imports and wraps your Vercel API functions:
+
+```javascript
+// Dynamically imports api/weather.js and serves it locally
+const weatherHandler = await import('../api/weather.js');
+app.post('/api/weather', (req, res) => {
+  weatherHandler.default(req, res);
+});
+```
+
+## API Endpoints
+
+### Weather API
+- **Endpoint**: `POST /api/weather`
+- **Purpose**: Fetch weather data from OpenWeatherMap
+- **Security**: API key handled server-side
+
+### AI Chat API
+- **Endpoint**: `POST /api/ai-chat`
+- **Purpose**: Generate AI responses using Google Gemini
+- **Security**: API key handled server-side
+
+## Security Features
+
+- ✅ API keys never exposed to client-side code
+- ✅ Server-side validation and error handling
+- ✅ CORS protection in local development
+- ✅ Environment-based configuration
+
+## Troubleshooting
+
+### Common Issues
+
+1. **API calls failing locally**
+   - Ensure local API server is running (`npm run dev:api`)
+   - Check `.env.local` file exists with correct API keys
+   - Verify `NODE_ENV=development` in `.env.local`
+
+2. **CORS errors**
+   - Make sure you're using `npm run dev` (not just `npm start`)
+   - Check that local API server is running on port 3001
+
+3. **Environment variables not loading**
+   - File must be named `.env.local` (not `.env`)
+   - Restart development servers after changing environment variables
+
+### Development vs Production
+
+| Environment | React App | API Server | API Endpoint |
+|-------------|-----------|------------|-------------|
+| Local | localhost:3000 | localhost:3001 | http://localhost:3001/api/* |
+| Vercel | your-app.vercel.app | Serverless | /api/* |
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test in both local and production environments
+5. Submit a pull request
 
 ### Analyzing the Bundle Size
 
