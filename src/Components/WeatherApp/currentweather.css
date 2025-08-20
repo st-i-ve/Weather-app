@@ -181,8 +181,8 @@ body {
 
 .theme--cold .unified-dock-container {
   --dock-bg: rgba(179, 212, 255, 0.8);
-  --dock-accent: rgba(238, 245, 255, 0.6);
-  --dock-text: #1a365d;
+  --dock-accent: rgba(112, 167, 243, 0.6);
+  --dock-text: #628fce;
   --dock-input-bg: rgba(255, 255, 255, 0.95);
   --dock-shadow: rgba(26, 54, 93, 0.15);
 }
@@ -197,8 +197,8 @@ body {
 
 .theme--cloudy .unified-dock-container {
   --dock-bg: rgba(166, 192, 254, 0.8);
-  --dock-accent: rgba(207, 217, 223, 0.6);
-  --dock-text: #2d3748;
+  --dock-accent: rgba(175, 219, 247, 0.6);
+  --dock-text: #ffffff;
   --dock-input-bg: rgba(255, 255, 255, 0.9);
   --dock-shadow: rgba(45, 55, 72, 0.12);
 }
@@ -340,21 +340,22 @@ body {
   align-items: center;
   justify-content: center;
   padding: 4px;
-  background: rgba(255, 255, 255, 0.15);
+  background:var(--dock-accent);
   border-radius: 50%;
   width: 48px;
   height: 48px;
+  
 }
 
 .dock-units .unit-toggle {
-  background: rgba(255, 255, 255, 0.3);
+  background:var(--dock-accent);
   border: none;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--dock-text);
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -367,7 +368,7 @@ body {
 
 .dock-units .unit-toggle:hover {
   transform: scale(1.1) rotate(5deg);
-  background: rgba(255, 255, 255, 0.4);
+
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -562,13 +563,14 @@ body {
   
   .element {
     min-width: calc(50% - 5px);
-    padding: 8px;
+    padding: 0px;
+    margin:0%
   }
   
   /* i increased mobile f_element width for better visibility */
   .f_element {
-    width: calc(85% - 8px);
-    margin: 4px;
+    width: 100%;
+    margin: 0px;
     min-height: 160px;
     height: 20vh;
     padding: 12px 8px;
@@ -599,7 +601,7 @@ body {
   }
 
   .dailyelements {
-    gap: 6px;
+    gap: 0px;
     padding: 0px;
     margin-top: 12px;
   }
@@ -995,9 +997,8 @@ body {
   .data-container {
     width: 100%;
     flex-direction: row;
-    margin: 20px 0;
+    margin: 0px;
     gap: 15px;
-    
     align-items: center;
     justify-content: center;
     padding: 0px;
@@ -1069,6 +1070,11 @@ body {
     height: 32px;
   }
   /*forecast*/
+  .dailyelements {
+    gap: 2px;
+    padding: 0 10px;
+    margin-top: 16px;
+  }
   .f_element {
     text-align: center;
     justify-content: center;
@@ -1080,12 +1086,13 @@ body {
     align-items: center;
     height: 22vh;
     width: 25%;
+    height: 70%;
   }
 }
 
 /* forecast container performance hint */
 .forecast-weather-box {
-  width: 90%;
+  width: 100%;
   content-visibility: auto;
   contain-intrinsic-size: 1px 400px;
 }
