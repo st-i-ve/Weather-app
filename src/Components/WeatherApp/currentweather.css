@@ -546,7 +546,7 @@ body {
   
   /* i increased mobile f_element width for better visibility */
   .f_element {
-    width: calc(70% - 8px);
+    width: calc(85% - 8px);
     margin: 4px;
     min-height: 160px;
     height: 20vh;
@@ -568,6 +568,9 @@ body {
     font-size: clamp(12px, 3vw, 16px);
     margin-top: 4px;
   }
+  .forecastcontainer {
+    margin: 0px;
+  }
 
   .forecasthead {
     font-size: clamp(18px, 4vw, 24px);
@@ -576,7 +579,7 @@ body {
 
   .dailyelements {
     gap: 6px;
-    padding: 0 5px;
+    padding: 0px;
     margin-top: 12px;
   }
 
@@ -893,53 +896,56 @@ body {
 /* small tablets and large phones */
 @media only screen and (max-width: 850px) {
   .unified-dock-container {
-    padding: 15px 10px;
+    padding: 10px;
   }
 
+  /* i kept dock components in one row for mobile */
   .unified-dock {
-    flex-direction: column;
+    flex-direction: row;
     gap: 8px;
     padding: 12px;
-    border-radius: 25px;
+    border-radius: 45px;
     max-width: 90vw;
+    align-items: center;
+    height: 60px;
   }
 
   .search-section {
-    margin-left: -1%;
-    min-width: 100%;
-    width: 100%;
+    flex: 1;
+    min-width: 0;
   }
 
   .dock-divider {
-    width: 80%;
-    height: 1px;
-    margin: 4px 0;
+    display: none;
   }
 
   .dock-location {
-    align-self: center;
+    flex-shrink: 0;
   }
 
   .dock-units {
-    align-self: center;
+    flex-shrink: 0;
   }
 
   .wholepage {
     border-radius: 0px;
     margin: 0%;
+  
     height: auto;
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
   }
   .dynamics {
     flex-direction: column;
     width: 100%;
   }
   .current-weather-box {
-    width: 90%;
+    width: 100%;
     justify-content: center;
     align-items: center;
+    padding:0%;
   }
 
   .current-weather {
@@ -947,7 +953,7 @@ body {
   }
 
   .weather-image {
-    margin-top: 35px;
+    margin-top:10px;
   }
 
   .weather-temp {
@@ -958,16 +964,26 @@ body {
   .city-name {
     font-size: clamp(28px, 5vw, 40px);
     margin: 10px 0;
+    font-weight: 500;
     text-align: center;
+  }
+  .current-weather{
+    margin: 0%;
   }
 
   .data-container {
     width: 100%;
+    flex-direction: row;
     margin: 20px 0;
     gap: 15px;
     flex-wrap: wrap;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
     padding: 0 10px;
+  }
+  element{
+    flex-direction: row;
+    margin: 0%;
   }
 
   .divider {
