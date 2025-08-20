@@ -23,11 +23,9 @@ export default function TopBar({ setQuery, units, setUnits }) {
       });
     }
   };
-  const unitChange = (e) => {
-    const selectedunit = e.currentTarget.name;
-    if (units !== selectedunit) {
-      setUnits(selectedunit);
-    }
+  /* i changed to a simple toggle function for single button */
+  const toggleUnits = () => {
+    setUnits(units === "metric" ? "imperial" : "metric");
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -76,19 +74,11 @@ export default function TopBar({ setQuery, units, setUnits }) {
 
         <div className="dock-units">
           <button
-            name="metric"
-            onClick={unitChange}
-            className={units === "metric" ? "active" : ""}
+            onClick={toggleUnits}
+            className="unit-toggle active"
+            title={`Switch to ${units === "metric" ? "°F" : "°C"}`}
           >
-            °C
-          </button>
-          <span className="unit-separator">|</span>
-          <button
-            name="imperial"
-            onClick={unitChange}
-            className={units === "imperial" ? "active" : ""}
-          >
-            °F
+            {units === "metric" ? "°C" : "°F"}
           </button>
         </div>
       </div>
