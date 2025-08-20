@@ -57,7 +57,11 @@ const ChatWidget = ({ weather, units }) => {
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
       {!isChatOpen && (
-        <div className="toggle-button" onClick={toggleChat}>
+        <div 
+          className="toggle-button" 
+          onClick={toggleChat}
+          title="Click me to talk to your agricultural assistant"
+        >
           <IoChatbubbleEllipsesOutline size={24} />
         </div>
       )}
