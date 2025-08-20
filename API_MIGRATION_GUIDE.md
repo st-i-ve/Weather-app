@@ -35,8 +35,8 @@ WEATHER_API_KEY=your_key_here
 ### 3. How It Works
 
 1. **Client-side code** (React components) calls internal API endpoints:
-   - `/api/ai-chat` for AI responses
-   - `/api/weather` for weather data
+   - `/service/ai-chat` for AI responses
+   - `/service/weather` for weather data
 
 2. **Serverless functions** handle the actual API calls:
    - API keys are stored securely on the server
