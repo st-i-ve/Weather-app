@@ -1,11 +1,10 @@
-// i updated this to call the serverless function instead of directly using API keys
+// i updated this to call the local API server instead of directly using API keys
 // this ensures weather api keys stay secure on the server side
-
-import { DateTime } from "luxon";
 
 const getFormattedWeatherData = async (searchParams) => {
   try {
-    const response = await fetch('/api/weather', {
+    // i use the local API server for development
+    const response = await fetch('http://localhost:3002/api/weather', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

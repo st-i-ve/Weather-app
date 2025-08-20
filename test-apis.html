@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Suite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .output {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <h1>🧪 API Test Suite</h1>
+    <p>i created this simple test page to debug both AI services with detailed logging</p>
+    
+    <div class="test-container">
+        <h2>🌤️ Weather API Test</h2>
+        <button onclick="testWeatherAPI()">Test Weather Service</button>
+        <div id="weather-output" class="output"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>🤖 AI Chat API Test</h2>
+        <button onclick="testAIAPI()">Test AI Service</button>
+        <div id="ai-output" class="output"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>🔧 Environment Check</h2>
+        <button onclick="checkEnvironment()">Check Setup</button>
+        <div id="env-output" class="output"></div>
+    </div>
+
+    <script>
+        function log(elementId, message, type = 'info') {
+            const output = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            output.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function clearLog(elementId) {
+            document.getElementById(elementId).innerHTML = '';
+        }
+        
+        async function testWeatherAPI() {
+            clearLog('weather-output');
+            log('weather-output', '🌤️ Testing Weather Service...', 'info');
+            
+            try {
+                const mockSearchParams = {
+                    q: 'London',
+                    units: 'metric'
+                };
+                
+                log('weather-output', '📤 Sending request to /api/weather...', 'info');
+                log('weather-output', `Data: ${JSON.stringify(mockSearchParams, null, 2)}`, 'info');
+                
+                const response = await fetch('/api/weather', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        searchParams: mockSearchParams
+                    })
+                });
+                
+                log('weather-output', `📥 Response status: ${response.status}`, 'info');
+                log('weather-output', `📥 Response headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)}`, 'info');
+                
+                const responseText = await response.text();
+                log('weather-output', `📥 Raw response (first 500 chars): ${responseText.substring(0, 500)}`, 'info');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${responseText}`);
+                }
+                
+                const data = JSON.parse(responseText);
+                log('weather-output', '✅ Weather Data Summary:', 'success');
+                log('weather-output', `  City: ${data.name}`, 'success');
+                log('weather-output', `  Temperature: ${data.temp}°C`, 'success');
+                log('weather-output', `  Conditions: ${data.details}`, 'success');
+                log('weather-output', `  Humidity: ${data.humidity}%`, 'success');
+                
+            } catch (error) {
+                log('weather-output', '❌ Weather Test Failed:', 'error');
+                log('weather-output', `Error type: ${error.constructor.name}`, 'error');
+                log('weather-output', `Error message: ${error.message}`, 'error');
+                log('weather-output', `Full error: ${error}`, 'error');
+            }
+        }
+        
+        async function testAIAPI() {
+            clearLog('ai-output');
+            log('ai-output', '🤖 Testing AI Service...', 'info');
+            
+            try {
+                const mockWeatherData = {
+                    name: 'Test City',
+                    details: 'Clear',
+                    temp: 25,
+                    humidity: 60,
+                    speed: 10
+                };
+                
+                const mockMessages = [
+                    { text: 'Hello, what should I plant today?', sender: 'user' }
+                ];
+                
+                log('ai-output', '📤 Sending request to /api/ai-chat...', 'info');
+                log('ai-output', `Data: ${JSON.stringify({ mockMessages, mockWeatherData, units: 'metric' }, null, 2)}`, 'info');
+                
+                const response = await fetch('/api/ai-chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chatMessages: mockMessages,
+                        deriveddata: mockWeatherData,
+                        units: 'metric'
+                    })
+                });
+                
+                log('ai-output', `📥 Response status: ${response.status}`, 'info');
+                log('ai-output', `📥 Response headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)}`, 'info');
+                
+                const responseText = await response.text();
+                log('ai-output', `📥 Raw response: ${responseText}`, 'info');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${responseText}`);
+                }
+                
+                const data = JSON.parse(responseText);
+                log('ai-output', `✅ AI Response: ${data.response}`, 'success');
+                
+            } catch (error) {
+                log('ai-output', '❌ AI Test Failed:', 'error');
+                log('ai-output', `Error type: ${error.constructor.name}`, 'error');
+                log('ai-output', `Error message: ${error.message}`, 'error');
+                log('ai-output', `Full error: ${error}`, 'error');
+            }
+        }
+        
+        function checkEnvironment() {
+            clearLog('env-output');
+            log('env-output', '🔧 Checking Environment Setup...', 'info');
+            
+            // i check if we're running on the correct port
+            log('env-output', `Current URL: ${window.location.href}`, 'info');
+            log('env-output', `Protocol: ${window.location.protocol}`, 'info');
+            log('env-output', `Host: ${window.location.host}`, 'info');
+            
+            // i check if this is running in development mode
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                log('env-output', '✅ Running in development mode', 'success');
+                log('env-output', '⚠️ Note: Serverless functions need Vercel CLI or deployment to work', 'info');
+            } else {
+                log('env-output', '✅ Running in production/deployed environment', 'success');
+            }
+            
+            // i check if fetch API is available
+            if (typeof fetch !== 'undefined') {
+                log('env-output', '✅ Fetch API is available', 'success');
+            } else {
+                log('env-output', '❌ Fetch API is not available', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
