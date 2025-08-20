@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatWidget.css";
-import getdataThroughai from "../services/weatheraitest";
+import getdataThroughai from "../../../api/weatheraitest";
 import { IoChatbubbleEllipsesOutline, IoClose, IoSend } from "react-icons/io5";
+import { Tooltip } from "react-tooltip";
 
 const ChatWidget = ({ weather, units }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -57,13 +58,26 @@ const ChatWidget = ({ weather, units }) => {
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
       {!isChatOpen && (
-        <div 
-          className="toggle-button" 
-          onClick={toggleChat}
-          title="Click me to talk to your agricultural assistant"
-        >
-          <IoChatbubbleEllipsesOutline size={24} />
-        </div>
+        <>
+          <div
+            className="toggle-button"
+            onClick={toggleChat}
+            data-tooltip-id="chat-tooltip"
+            data-tooltip-content="Click me to talk to your agricultural assistant"
+          >
+            <IoChatbubbleEllipsesOutline size={24} />
+          </div>
+          <Tooltip
+            id="chat-tooltip"
+            place="left"
+            style={{
+              backgroundColor: "#4a90e2",
+              color: "white",
+              borderRadius: "8px",
+              fontSize: "14px",
+            }}
+          />
+        </>
       )}
       <div className="chat-container">
         {isChatOpen && (
