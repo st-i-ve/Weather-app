@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatWidget.css";
-import getdataThroughai from "../../api/AIservice";
+import getdataThroughai from "../../Service/AIservice";
 import { IoChatbubbleEllipsesOutline, IoClose, IoSend } from "react-icons/io5";
 import { Tooltip } from "react-tooltip";
 

@@ -1,14 +1,23 @@
+// i created this serverless function to handle AI chat requests securely
+// api keys stay server-side and aren't exposed in the client bundle
 
-const geminiAPI = process.env.REACT_APP_GEMINI_API_KEY;
+export default async function handler(req, res) {
+  // i only allow POST requests for this endpoint
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-const getdataThroughai = async (chatMessages, deriveddata, units) => {
   try {
-    // i check if gemini api key is available
+    const { chatMessages, deriveddata, units } = req.body;
+    
+    // i get the gemini api key from server environment variables
+    const geminiAPI = process.env.GEMINI_API_KEY;
+    
     if (!geminiAPI) {
-      throw new Error("Gemini API key not found. Please set REACT_APP_GEMINI_API_KEY in your environment variables.");
+      throw new Error("Gemini API key not found. Please set GEMINI_API_KEY in your environment variables.");
     }
 
-    chatMessages = chatMessages ?? [];
+    const messages = chatMessages ?? [];
 
     // i build proper conversation history for gemini's multi-turn format
     const contents = [];
@@ -40,7 +49,7 @@ Respond as a knowledgeable but casual farming advisor who remembers what we've d
     });
     
     // i add conversation history in proper format, skipping the initial greeting
-    chatMessages.slice(1).forEach((messageObject) => {
+    messages.slice(1).forEach((messageObject) => {
       if (messageObject.sender === "user") {
         contents.push({
           role: "user",
@@ -80,11 +89,11 @@ Respond as a knowledgeable but casual farming advisor who remembers what we've d
 
     const data = await response.json();
     // i extract the response from gemini's format
-    return data.candidates[0].content.parts[0].text;
+    const aiResponse = data.candidates[0].content.parts[0].text;
+    
+    res.status(200).json({ response: aiResponse });
   } catch (error) {
-    // Handle errors, e.g., logging or throwing
-    console.error("Error fetching chat completions:", error);
-    throw error; // Re-throw the error to be handled by the caller
+    console.error("Error in AI chat endpoint:", error);
+    res.status(500).json({ error: error.message || "Failed to process AI request" });
   }
-};
-export default getdataThroughai;
+}
