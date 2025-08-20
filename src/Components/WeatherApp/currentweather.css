@@ -535,6 +535,24 @@ body {
     flex-shrink: 0;
     width: 120px;
   }
+
+  /* i adjusted circular loader for tablet screens */
+  .placeholder-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .placeholder-icon::before {
+    width: 65px;
+    height: 65px;
+    border-width: 2.5px;
+  }
+
+  .placeholder-icon::after {
+    width: 50px;
+    height: 50px;
+    border-width: 1.5px;
+  }
 }
 
 /* i optimized for small mobile screens */
@@ -620,6 +638,24 @@ body {
   .hourlyelements .f_element {
     width: 100px;
     min-height: 140px;
+  }
+
+  /* i adjusted circular loader for mobile screens */
+  .placeholder-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .placeholder-icon::before {
+    width: 50px;
+    height: 50px;
+    border-width: 2px;
+  }
+
+  .placeholder-icon::after {
+    width: 35px;
+    height: 35px;
+    border-width: 1px;
   }
   
   .top-bar input {
@@ -1012,6 +1048,18 @@ body {
     margin-top: 10px;
   }
 
+  .placeholder-icon::before {
+    width: 60px;
+    height: 60px;
+    border-width: 2px;
+  }
+
+  .placeholder-icon::after {
+    width: 45px;
+    height: 45px;
+    border-width: 1.5px;
+  }
+
   .placeholder-small-icon {
     width: 15% !important;
     height: 24px !important;
@@ -1180,11 +1228,45 @@ body {
 
 .placeholder-icon {
   display: flex;
-  height: 30%;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
   width: 120px;
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border-radius: 50%;
-  animation: pulse 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+/* i created a smooth circular loader for weather icon */
+.placeholder-icon::before {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: circular-spin 1s linear infinite;
+}
+
+.placeholder-icon::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: circular-spin 1.5s linear infinite reverse;
+}
+
+@keyframes circular-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .placeholder-temp {
