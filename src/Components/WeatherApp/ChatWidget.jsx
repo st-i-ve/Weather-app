@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatWidget.css";
 import getdataThroughai from "../services/weatheraitest";
-import { IoChatbubbleEllipsesOutline, IoClose, IoSend } from "react-icons/io5";
+import { IoChatbubbleEllipsesOutline, IoClose, IoSend, IoInformationCircleOutline } from "react-icons/io5";
 
 const ChatWidget = ({ weather, units }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -13,6 +13,16 @@ const ChatWidget = ({ weather, units }) => {
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
+  };
+
+  const handleHelp = () => {
+    // i added a simple help handler that shows basic info
+    const helpMessage = {
+      text: "Hi! I'm your weather assistant. You can ask me about current weather, forecasts, or any weather-related questions. Try asking things like 'Will it rain tomorrow?' or 'What's the temperature like?'",
+      sender: "responder"
+    };
+    setMessages(prev => [...prev, helpMessage]);
+    setIsChatOpen(true);
   };
 
   const handleInputChange = (event) => {
@@ -55,13 +65,24 @@ const ChatWidget = ({ weather, units }) => {
   }, [messages]);
 
   return (
-    <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
+    <div className="floating-dock">
+      {/* help button */}
       {!isChatOpen && (
-        <div className="toggle-button" onClick={toggleChat}>
-          <IoChatbubbleEllipsesOutline size={24} />
-        </div>
+        <button className="dock-button help-button" onClick={handleHelp}>
+          <IoInformationCircleOutline size={24} />
+          <div className="button-label">Help</div>
+        </button>
       )}
-      <div className="chat-container">
+      
+      {/* chat widget */}
+      <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
+        {!isChatOpen && (
+          <button className="dock-button toggle-button" onClick={toggleChat}>
+            <IoChatbubbleEllipsesOutline size={24} />
+            <div className="button-label">Chat</div>
+          </button>
+        )}
+        <div className="chat-container">
         {isChatOpen && (
           <div className="chat-header">
             <span className="chat-title">Weather Assistant</span>
@@ -88,6 +109,7 @@ const ChatWidget = ({ weather, units }) => {
             <IoSend size={18} />
           </button>
         </form>
+        </div>
       </div>
     </div>
   );
