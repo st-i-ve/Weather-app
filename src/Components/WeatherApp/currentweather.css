@@ -971,6 +971,60 @@ body {
     padding:0%;
   }
 
+  /* i added placeholder styles to match 850px breakpoint design */
+  .placeholder-temp {
+    width: 200px;
+    height: clamp(60px, 10vw, 100px);
+    margin: 10px 0;
+  }
+
+  .placeholder-city {
+    width: 180px;
+    height: clamp(28px, 5vw, 40px);
+    margin: 10px 0;
+  }
+
+  .placeholder-icon {
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+  }
+
+  .placeholder-small-icon {
+    width: 15% !important;
+    height: 24px !important;
+  }
+
+  .placeholder-value {
+    width: 50px;
+    height: 18px;
+    font-size: 90%;
+  }
+
+  .placeholder-forecast-item {
+    width: calc(25% - 2px);
+    height: 22vh;
+    padding: 5px;
+    border-radius: 11px;
+    box-sizing: border-box;
+  }
+
+  .placeholder-forecast-time,
+  .placeholder-forecast-day {
+    width: 45px;
+    height: 12px;
+  }
+
+  .placeholder-forecast-icon {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .placeholder-forecast-temp {
+    width: 35px;
+    height: 14px;
+  }
+
   .current-weather {
     width: 100%;
   }
