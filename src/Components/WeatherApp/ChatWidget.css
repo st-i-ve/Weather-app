@@ -255,13 +255,18 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+}
+.close-icon {
+  color: #ffffff;
 }
 
 .close-button:hover {

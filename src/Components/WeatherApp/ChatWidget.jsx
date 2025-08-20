@@ -66,7 +66,7 @@ const ChatWidget = ({ weather, units }) => {
           <div className="chat-header">
             <span className="chat-title">Weather Assistant</span>
             <div className="close-button" onClick={toggleChat}>
-              <IoClose size={16} />
+              <IoClose className="close-icon" size={16} />
             </div>
           </div>
         )}

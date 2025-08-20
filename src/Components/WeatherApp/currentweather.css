@@ -174,7 +174,7 @@
 
 .theme--rainy .unified-dock-container {
   --dock-bg: rgba(127, 199, 255, 0.8);
-  --dock-accent: rgba(43, 108, 176, 0.6);
+  --dock-accent: rgba(81, 161, 247, 0.6);
   --dock-text: #ffffff;
   --dock-input-bg: rgba(255, 255, 255, 0.9);
   --dock-shadow: rgba(43, 108, 176, 0.2);
