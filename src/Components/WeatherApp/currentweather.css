@@ -976,14 +976,15 @@ body {
     flex-direction: row;
     margin: 20px 0;
     gap: 15px;
-    flex-wrap: wrap;
+    
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
+    padding: 0px;
   }
   element{
     flex-direction: row;
     margin: 0%;
+    padding: 0%;
   }
 
   .divider {
@@ -995,7 +996,7 @@ body {
   }
 
   .data {
-    font-size: 80%;
+    font-size: 90%;
     font-weight: 400;
     gap: 5px;
   }
@@ -1035,11 +1036,13 @@ body {
     height: 36px;
     padding: 8px;
   }
+  .dock-units{
+    width:30px;
+  }
 
   .units {
     font-size: 14px;
     height: 36px;
-    width: auto;
     min-width: 80px;
     margin: 0;
   }
