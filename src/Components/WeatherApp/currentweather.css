@@ -577,11 +577,12 @@ body {
   .data-container {
     gap: 10px;
     padding: 0 5px;
+    width: 100vw;
   }
   
   
   .element {
-    min-width: calc(50% - 5px);
+    min-width: 15vw;
     padding: 0px;
     margin:0%;
     font-size: 12px;
