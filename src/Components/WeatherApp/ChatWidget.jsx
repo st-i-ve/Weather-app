@@ -55,6 +55,23 @@ const ChatWidget = ({ weather, units }) => {
     scrollToBottom();
   }, [messages]);
 
+  // prevent body scrolling when chat is open on mobile
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 480;
+    if (isMobile) {
+      if (isChatOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
+    }
+    
+    // cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isChatOpen]);
+
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
       {!isChatOpen && (
