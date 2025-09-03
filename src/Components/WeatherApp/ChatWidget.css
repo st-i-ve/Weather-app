@@ -447,6 +447,10 @@
     right: 0;
     bottom: 0;
     position: fixed;
+    z-index: 50;
+  }
+  
+  .chat-widget.open {
     z-index: 9999;
   }
   

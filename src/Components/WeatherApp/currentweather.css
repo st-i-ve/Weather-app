@@ -162,6 +162,8 @@ body {
   display: flex;
   justify-content: center;
   padding: 10px;
+  position: relative;
+  z-index: 100;
   /* i set up css variables for weather-adaptive colors */
   --dock-bg: rgba(142, 255, 225, 0.8);
   --dock-accent: rgba(142, 255, 225, 0.6);
