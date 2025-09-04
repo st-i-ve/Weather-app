@@ -423,8 +423,8 @@
   }
   
   .chat-container {
-    width: calc(100vw - 40px);
-    max-width: 400px;
+    width: 100vw;
+    height: 100vh;
     max-height: 450px;
   }
   
