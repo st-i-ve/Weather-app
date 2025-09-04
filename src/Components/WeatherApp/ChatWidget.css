@@ -443,7 +443,9 @@
 @media (max-width: 480px) {
   .chat-widget {
     width: 100vw;
-    height: 100vh;
+    height: 100vh; /* fallback for older browsers */
+    height: calc(var(--vh, 1vh) * 100); /* custom property fallback */
+    height: 100dvh; /* dynamic viewport height - excludes browser UI */
     right: 0;
     bottom: 0;
     position: fixed;
@@ -456,7 +458,9 @@
   
   .chat-container {
     width: 100%;
-    height: 100vh;
+    height: 100vh; /* fallback for older browsers */
+    height: calc(var(--vh, 1vh) * 100); /* custom property fallback */
+    height: 100dvh; /* dynamic viewport height - excludes browser UI */
     max-height: none;
     border-radius: 0;
     display: flex;

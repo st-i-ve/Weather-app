@@ -72,6 +72,26 @@ const ChatWidget = ({ weather, units }) => {
     };
   }, [isChatOpen]);
 
+  // handle mobile viewport height for browser address bar
+  useEffect(() => {
+    const setViewportHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    const isMobile = window.innerWidth <= 480;
+    if (isMobile) {
+      setViewportHeight();
+      window.addEventListener('resize', setViewportHeight);
+      window.addEventListener('orientationchange', setViewportHeight);
+      
+      return () => {
+        window.removeEventListener('resize', setViewportHeight);
+        window.removeEventListener('orientationchange', setViewportHeight);
+      };
+    }
+  }, []);
+
   return (
     <div className={`chat-widget ${isChatOpen ? "open" : ""}`}>
       {!isChatOpen && (
